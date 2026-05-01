@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Back-to-School Campaign — Lee Yih Ven</title>
+<meta name="description" content="Single brief generates BM copy across WhatsApp, Instagram, email, blog, SEO." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Back-to-School Campaign (BYO-key copywriting agency)</h1>
+  <p class="post-description">Single brief generates BM copy across WhatsApp, Instagram, email, blog, SEO.</p>
+  <div class="post-body">
+    <p>A children's clothing store owner in Bangi runs back-to-school campaigns twice a year. Every cycle she writes one paragraph, pastes it across WhatsApp, Instagram, email, blog, and Google search — or skips channels entirely because writing different copy for each takes too long. This app generates all five from one brief.</p>
+    <p>The store context — name, products, prices, audience, tone — gets baked in once. From there, she enters a campaign brief, picks a tone (Formal BM, Casual BM, or <em>Campur</em> — the BM-English mix Malaysians actually speak), and hits Generate. Eight seconds later, five tabs light up:</p>
+    <ul>
+      <li><strong>WhatsApp</strong> — punchy 4-line broadcast ending with a numbered reply prompt ("Balas 1 untuk tempah, balas 2 untuk carta saiz")</li>
+      <li><strong>Instagram</strong> — hook caption with BM hashtags</li>
+      <li><strong>Email</strong> — 3-part drip sequence</li>
+      <li><strong>Blog</strong> — narrative, mum-buying-last-minute story</li>
+      <li><strong>SEO</strong> — keyword-dense paragraph for Google ("baju sekolah murah Bangi")</li>
+    </ul>
+    <p>The architecture is intentionally minimal. Single static HTML page, Vanilla JS, Gemini 2.0 Flash via BYO-key (the user provides their own API key, no SaaS subscription). No backend. No database. Hosted on GitHub Pages, free.</p>
+    <p>The interesting part is the prompt structure. One system prompt holds all five channel templates. The brief gets injected once. Gemini returns five outputs in a single call — fewer round trips, lower cost per campaign, and consistent voice across channels because they're generated together rather than separately.</p>
+    <p>For a Malaysian SME owner running marketing herself between walk-ins, the friction this removes is real. Three minutes from preset selection to first WhatsApp broadcast pasted. The same five outputs would take 30+ minutes of re-prompting on a free chat tool.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/back-to-school-campaign.html">Live demo (BYO Gemini API key) →</a>
+    <a href="https://lyven81.github.io/ai-project/back-to-school-campaign-source.html">Source →</a>
+  </div>
+  <div class="post-hashtags">#GeminiAPI #BahasaMalaysia #SMEMarketing</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
