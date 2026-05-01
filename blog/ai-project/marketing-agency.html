@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marketing Agency (cloud-scheduled agents) — Lee Yih Ven</title>
+<meta name="description" content="Three agents on Cloud Scheduler run a solo founder's marketing weekly." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Marketing Agency (cloud-scheduled agents)</h1>
+  <p class="post-description">Three agents on Cloud Scheduler run a solo founder's marketing weekly.</p>
+  <div class="post-body">
+    <p>Three AI agents now run my marketing on a cron schedule. Not a metaphor — a literal Cloud Scheduler config.</p>
+    <p>The three:</p>
+    <ul>
+      <li><strong>Content pipeline</strong> — runs Tuesdays. Pulls from a backlog of post ideas, drafts a LinkedIn post and a blog draft, saves to a draft folder.</li>
+      <li><strong>Lead follow-up</strong> — runs every weekday morning. Reads yesterday's inbound forms, drafts personalised replies, queues them for review.</li>
+      <li><strong>Weekly report</strong> — runs Sunday nights. Summarises new leads, content shipped, social engagement; emails a brief.</li>
+    </ul>
+    <p>All three run as Cloud Run jobs triggered by Google Cloud Scheduler. The "agent" framing is honestly generous — none of them have free will. They're scheduled deterministic LLM calls with structured output.</p>
+    <p>That's the design choice, not a limitation. For most "agent" workflows in a small business, you don't need autonomy. You need reliability and predictability on a schedule.</p>
+    <p>Three observations from running this for several weeks:</p>
+    <ul>
+      <li>The cost is trivial. With Gemini Flash and tight context, the entire stack runs for less than a single SaaS marketing tool's monthly fee.</li>
+      <li>The reliability is high. Cron + structured output + Cloud Run logs is more dependable than any autonomous agent I've shipped.</li>
+      <li>The leverage is real. A solo founder gets a marketing department on the cost of a coffee.</li>
+    </ul>
+    <p>Most things called "agents" today are scheduled LLM calls with extra steps. That's not a criticism — scheduled LLM calls work, and the boring versions ship reliably while the autonomous versions get debugged.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/marketing-agency.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#CloudRun #LLM #SoloFounder</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

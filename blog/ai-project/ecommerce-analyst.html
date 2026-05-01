@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ecommerce Analyst (private AI BI) — Lee Yih Ven</title>
+<meta name="description" content="Private AI sends an e-commerce seller a one-page brief weekly." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Ecommerce Analyst (private AI BI)</h1>
+  <p class="post-description">Private AI sends an e-commerce seller a one-page brief weekly.</p>
+  <div class="post-body">
+    <p>A private AI analyst for an e-commerce seller. Every Monday it sends a one-page brief on margin leaks. No SaaS. No subscription. The seller owns the install.</p>
+    <p>The bet against most analytics SaaS: small e-commerce sellers don't want a dashboard with 40 charts. They want one paragraph — "here's what changed last week and why" — and they want to make one decision off it.</p>
+    <p>The flow:</p>
+    <ul>
+      <li>Seller drops their weekly sales CSV into a folder</li>
+      <li>An MCP server exposes typed tools over the data — <code>top_skus_by_margin</code>, <code>discount_impact</code>, <code>return_rate_by_category</code>, etc.</li>
+      <li>An LLM queries those tools, drafts a one-page brief in plain English, emails it Monday morning</li>
+    </ul>
+    <p>The ownership stack matters as much as the pipeline. The seller owns the data (never leaves their laptop or their own cloud project), the prompts (they edit how the brief is framed), and the code (one-time install, no SaaS subscription, no vendor lock-in).</p>
+    <p>What customers actually wanted was <em>less</em> automation, not more. Not a real-time dashboard. One decision per week: did anything important change?</p>
+    <p>The implication for AI work: there's a whole category of services being sold as monthly SaaS that should be sold as one-time installs. Lower lifetime revenue per customer, but the support load is near zero, you can serve more customers in parallel, and the alignment with the customer (you sold them something they own) is cleaner than recurring SaaS rent.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/ecommerce-analyst.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#MCP #Ecommerce #AIConsulting</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

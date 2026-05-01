@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bright Path Tuition (AlloyDB + MCP) — Lee Yih Ven</title>
+<meta name="description" content="AlloyDB-backed assistant lets tuition centre owner query data in plain language." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Bright Path Tuition (AlloyDB + MCP)</h1>
+  <p class="post-description">AlloyDB-backed assistant lets tuition centre owner query data in plain language.</p>
+  <div class="post-body">
+    <p>An AlloyDB-backed AI assistant for a tuition centre. The owner asks "who hasn't paid this month" in plain language and gets the answer back in a paragraph.</p>
+    <p>Small businesses tend to have data — Excel exports, POS dumps, attendance apps — but no time or skill to query it. So the data sits unused. The owner is a teacher, not a database engineer.</p>
+    <p>The architecture stores the data in AlloyDB, exposes typed query tools via MCP (Model Context Protocol), and lets an LLM translate natural-language questions into the right tool calls.</p>
+    <ul>
+      <li>AlloyDB Postgres holds students, attendance, payments, exam results</li>
+      <li>An MCP server exposes typed tools — <code>get_unpaid_students</code>, <code>attendance_below_threshold</code>, <code>top_performers_by_subject</code></li>
+      <li>The LLM picks the right tool, fills in parameters, executes, and explains the answer in plain language</li>
+    </ul>
+    <p>The discipline that MCP imposes is the part that makes this safe. The LLM doesn't write SQL. It picks from a fixed menu of typed queries. No hallucinated joins, no leaked rows, no surprise full-table scans. Determinism by design.</p>
+    <p>A representative ask: "Show me students who missed last week's class and haven't paid this month." Two MCP tool calls, one paragraph back, no data team in the loop.</p>
+    <p>For a teacher running a tuition centre, this is the only realistic path from "I have the data" to "I can ask it questions" without hiring an analyst.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/bright-path-tuition.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#AlloyDB #MCP #PostgreSQL</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

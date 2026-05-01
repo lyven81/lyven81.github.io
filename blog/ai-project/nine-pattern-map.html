@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>9-Pattern Map (synthesis) — Lee Yih Ven</title>
+<meta name="description" content="Nine production AI architecture patterns and when each one fits." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">9-Pattern Map (synthesis)</h1>
+  <p class="post-description">Nine production AI architecture patterns and when each one fits.</p>
+  <div class="post-body">
+    <p>Nine architecture patterns that keep showing up across production AI apps for SMEs — and when each one is actually the right fit.</p>
+    <ol>
+      <li><strong>Multi-Agent Orchestration (ADK + A2A)</strong> — when failure isolation and independent scaling matter. Each agent on its own Cloud Run service.</li>
+      <li><strong>Browser-Native Agent Tools (WebMCP)</strong> — when you want to be discoverable to AI shopping agents. Storefront exposes typed tools via <code>navigator.modelContext</code>.</li>
+      <li><strong>Real-Time Voice AI</strong> — when typing is the friction. Gemini Live + WebSocket + bidirectional PCM streaming.</li>
+      <li><strong>MCP</strong> — when the LLM needs to ground its answers in real data without hallucinating SQL. Typed tools over the database.</li>
+      <li><strong>RAG</strong> — when the answer lives in a corpus of documents too big to stuff in the prompt.</li>
+      <li><strong>Agentic</strong> — when the task is multi-step and the path varies based on intermediate results.</li>
+      <li><strong>Hybrid / Token-Lean</strong> — when cost per call dominates. Plain LLM + structured output + a few functions, no framework.</li>
+      <li><strong>LLM Chatbots</strong> — when conversation is the whole product. No tools, no state, just prompt-driven Q&amp;A.</li>
+      <li><strong>RPA Pipelines</strong> — when the workflow is deterministic. Scheduled LLM calls with structured output. Cron + Cloud Run.</li>
+    </ol>
+    <p>The honest takeaway from building across all nine: most "AI app" requests fall into Hybrid (#7) or RPA (#9). The exotic patterns get all the press. They're not what most businesses actually need.</p>
+    <p>The skill that matters isn't picking the fanciest pattern. It's reading the problem and reaching for the simplest one that works for it.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/">Portfolio of the underlying builds →</a>
+  </div>
+  <div class="post-hashtags">#AIArchitecture #LLM #AIEngineering</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

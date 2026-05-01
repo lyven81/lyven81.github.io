@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sundry Shop Voice Assistant (Gemini Live) — Lee Yih Ven</title>
+<meta name="description" content="Bahasa Malaysia voice assistant for kedai runcit owners over POS data." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Sundry Shop Voice Assistant (Gemini Live)</h1>
+  <p class="post-description">Bahasa Malaysia voice assistant for kedai runcit owners over POS data.</p>
+  <div class="post-body">
+    <p>A Bahasa Malaysia voice assistant for kedai runcit owners. The shop owner taps "Mula", taps the mic, and asks in casual Bahasa — "Hari ni jualan berapa?" — and hears the answer spoken back. No typing. No English required.</p>
+    <p>The use case is real because the alternative isn't. Most "AI for SMEs" demos assume the operator is comfortable typing in English. They aren't. Voice in their first language is the right interface for this audience.</p>
+    <p>Built on Gemini Live API with a function-calling bridge to MCP-style tools over the shop's POS dataset.</p>
+    <p>The LLM part was the easy part. The audio pipeline is where the real work lives:</p>
+    <ul>
+      <li>Browser captures mic at 16kHz PCM via an AudioWorklet</li>
+      <li>Streams the PCM up via WebSocket to a FastAPI backend</li>
+      <li>Backend forwards to Gemini Live; relays the model's <code>function_call</code> to a <code>tool_bridge</code> that runs pandas queries on the POS CSV</li>
+      <li>Streams 24kHz PCM back down for playback</li>
+    </ul>
+    <p>Gemini Live's function-calling worked smoothly with custom tools — the SDK handles it cleanly. The longer fight was the prompt: getting the model to consistently produce <em>santai</em> (relaxed) Bahasa, not formal textbook Malay, took more iteration than the entire backend.</p>
+    <p>For Malaysian SMEs whose phone time isn't English-keyboard time, this is the interface that lowers the barrier. Voice + local language + working POS data, in one tap.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/sundry-shop-assistant.html">Live demo (BYO Gemini API key) →</a>
+  </div>
+  <div class="post-hashtags">#GeminiLive #VoiceAI #BahasaMalaysia</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

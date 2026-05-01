@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course Creator — LoopAgent quality gate — Lee Yih Ven</title>
+<meta name="description" content="Researcher-Judge loop in ADK gates content generation on quality." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Course Creator — LoopAgent quality gate</h1>
+  <p class="post-description">Researcher-Judge loop in ADK gates content generation on quality.</p>
+  <div class="post-body">
+    <p>A second post on Course Creator — this time on the Researcher → Judge loop that gates downstream content generation.</p>
+    <p>The risk with LLM-generated material is that it sounds confident but contains gaps. For Course Creator, the Content Builder shouldn't start writing course material until the research is genuinely solid. ADK's <code>LoopAgent</code> is built for this kind of workflow.</p>
+    <p>The pattern:</p>
+    <ol>
+      <li>Researcher gathers information on the topic</li>
+      <li>Judge agent reviews it for completeness and accuracy</li>
+      <li>If Judge says "fail," loop. Researcher tries again with the Judge's feedback as input.</li>
+      <li>If Judge says "pass," break the loop. Hand off to Content Builder.</li>
+      <li>Cap the loop so it can't run forever.</li>
+    </ol>
+    <p>The custom piece is a small <code>BaseAgent</code> (the EscalationChecker) that reads the Judge's verdict and decides whether to break or continue. ADK provides <code>LoopAgent</code> and <code>SequentialAgent</code> as the building blocks; the loop-control logic is yours to write.</p>
+    <p>The leverage point in this whole architecture is the Judge prompt. A vague Judge passes weak research. A precise Judge with explicit pass/fail criteria forces the Researcher to actually do the work. The Judge is doing more shaping of the final output than the Researcher itself.</p>
+    <p>The same pattern fits any "generate-and-verify" workflow — code generation with a linting/test agent, image generation with a vision-model critic, data extraction with a schema validator. It's the cheapest way to add reliability to LLM output without fine-tuning.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/course-creator.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#GoogleADK #LoopAgent #AIAgents</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

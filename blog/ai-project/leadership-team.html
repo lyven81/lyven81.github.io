@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leadership Team (subagent boardroom) — Lee Yih Ven</title>
+<meta name="description" content="AI boardroom of six subagents writes its own minutes to Markdown." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Leadership Team (subagent boardroom)</h1>
+  <p class="post-description">AI boardroom of six subagents writes its own minutes to Markdown.</p>
+  <div class="post-body">
+    <p>An AI boardroom that holds a weekly meeting and writes its own minutes back to a Markdown file. Six subagents — Marketing Director, Chief Researcher, Editor-in-Chief, AI Engineer Lead, Coordinator, Mentor — each with its own role prompt, knowledge files, and persona.</p>
+    <p>Every Monday, the Coordinator runs the meeting. Each role contributes a weekly report. They make decisions, assign owners, surface conflicts. The Coordinator writes the minutes back to a Markdown file. Next Monday, it reads last week's minutes before drafting the agenda.</p>
+    <p>That's it. The whole "boardroom" is six roles, a coordinator, and a Markdown file.</p>
+    <p>The interesting part is the persistence layer — flat Markdown files. To know what the boardroom decided three weeks ago, open the file. To fix a bad decision, edit it. To back up state, copy the folder. The whole memory layer is durable, debuggable, version-controllable, and human-readable without any infrastructure.</p>
+    <p>Most "agent memory" architectures assume you need vector stores, embeddings, retrieval pipelines — fancier persistence with operational cost attached. For a system like this, where the agents need to recall structured decisions and not search across a corpus, a flat file is the right database. Less to break, easier to debug, free to back up.</p>
+    <p>The pattern generalizes. Plenty of agent use cases involve recalling structured prior decisions rather than retrieving from a knowledge corpus. For those, plain text is enough.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/leadership-team.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#AIAgents #AgentMemory #ClaudeCode</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

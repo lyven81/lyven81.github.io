@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plumber WhatsApp Agent (token-lean) — Lee Yih Ven</title>
+<meta name="description" content="Token-lean WhatsApp booking agent — plain LLM, no frameworks." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Plumber WhatsApp Agent (token-lean)</h1>
+  <p class="post-description">Token-lean WhatsApp booking agent — plain LLM, no frameworks.</p>
+  <div class="post-body">
+    <p>A WhatsApp booking agent for a plumber. No LangChain, no CrewAI, no n8n. Plain LLM + a few Python functions.</p>
+    <p>The reasoning behind skipping the frameworks is economic. WhatsApp Business API charges per message. For a plumber processing dozens of bookings a day, every framework token added is a real cost line. Frameworks add tokens.</p>
+    <p>The full stack:</p>
+    <ul>
+      <li>One system prompt</li>
+      <li>Structured JSON output via a Pydantic schema</li>
+      <li>Three Python functions: <code>book_slot</code>, <code>check_availability</code>, <code>escalate_to_human</code></li>
+      <li>Plain <code>httpx</code> for the WhatsApp Business webhook</li>
+    </ul>
+    <p>That's the whole thing. No graph. No state machine. No agent executor.</p>
+    <p>Two practical effects emerged once it was running. First, the agent is more reliable without the framework — fewer layers of indirection, fewer abstractions, less to go wrong. The system prompt carries most of the work. Second, it's significantly cheaper per message because the prompt is leaner. At WhatsApp volume, that compounds into real margin.</p>
+    <p>The pattern that keeps showing up: not every agent needs an orchestrator. Most agents in the real world have a single goal, a small set of tools, and a clear escalation path. For those, plain LLM + structured output + a few functions outperforms every framework I've tried — on cost and on reliability.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/plumber-whatsapp-agent.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#AIAgents #WhatsAppBusiness #LLM</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

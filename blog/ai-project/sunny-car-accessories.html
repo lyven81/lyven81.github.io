@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sunny Car Accessories (WebMCP) — Lee Yih Ven</title>
+<meta name="description" content="Static-HTML car shop exposes typed tools for AI shopping agents." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Sunny Car Accessories (WebMCP)</h1>
+  <p class="post-description">Static-HTML car shop exposes typed tools for AI shopping agents.</p>
+  <div class="post-body">
+    <p>A Malaysian car-accessory storefront that AI agents can shop on — without screenshots, without guessing pixel coordinates, without abandoning carts mid-checkout. Built on WebMCP, a draft W3C standard.</p>
+    <p>The way most AI shopping agents work today: take a screenshot, identify "Add to Cart" visually, click pixel coordinates, hope the page didn't shift. It works about half the time. Carts get abandoned in checkout because the agent loses its place.</p>
+    <p>WebMCP solves this differently. The page exposes a typed menu of tools — <code>searchAccessories</code>, <code>addToCart</code>, <code>checkFitment</code>, <code>getStockLevel</code> — that any WebMCP-aware agent can discover and call directly. No vision required. No fragile DOM assumptions.</p>
+    <p>Sunny Car Accessories is a small storefront across Interior, Exterior, Performance, and Tech categories. To a human visitor it looks and behaves like a normal static-HTML shop. The agent layer runs invisibly via JavaScript at page load. Visitors who don't know about WebMCP would never notice it's there.</p>
+    <p>That's the part worth flagging: the human UI is identical with or without WebMCP. The technology is additive, not replacement. You don't choose between "human-friendly" and "agent-friendly." The page is both.</p>
+    <p>For Malaysian SMEs, the practical implication is preparation for the next traffic channel. Being agent-discoverable today is roughly what mobile-friendly was to Google in 2015 — if AI shopping agents become the default, sites without WebMCP are invisible to them.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/sunny-car-accessories.html">Live demo (Chrome 146+) →</a>
+    <a href="https://lyven81.github.io/ai-project/sunny-car-accessories-source.html">Source →</a>
+  </div>
+  <div class="post-hashtags">#WebMCP #AgenticCommerce #AIAgents</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>

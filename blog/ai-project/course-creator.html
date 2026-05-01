@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course Creator (A2A multi-service ADK) — Lee Yih Ven</title>
+<meta name="description" content="Multi-agent course generator splits across Cloud Run services via A2A protocol." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Course Creator (A2A multi-service ADK)</h1>
+  <p class="post-description">Multi-agent course generator splits across Cloud Run services via A2A protocol.</p>
+  <div class="post-body">
+    <p>Course Creator is an AI agent system that researches a topic, judges the research for completeness, and generates structured course material. The technically interesting part isn't the workflow — it's that each agent runs as its own Cloud Run microservice and talks to the others over Google's A2A protocol.</p>
+    <p>Most multi-agent demos run inside one Python process. One script imports all the agents, they share memory, one runtime, one container. It's how almost every tutorial does it.</p>
+    <p>The downside in production is that one bug crashes the whole pipeline. You can't scale only the slow agent. Swapping an agent for a different model means rewriting imports across the codebase. Tight coupling.</p>
+    <p>So Course Creator went the other direction. Each specialized agent — Researcher, Judge, Content Builder, Orchestrator — runs as a separate Cloud Run service. They communicate over A2A (Agent-to-Agent), which is JSON-RPC over HTTP. Each agent publishes an "agent card" at <code>/.well-known/agent-card.json</code> describing what it does, what inputs it takes, and what it returns.</p>
+    <p>The architecture:</p>
+    <ul>
+      <li>Researcher uses ADK's <code>google_search_tool</code> to gather information</li>
+      <li>Judge reviews the research and can fail it</li>
+      <li>Content Builder turns approved research into course material</li>
+      <li>Orchestrator wires them together with <code>LoopAgent</code> and <code>RemoteA2aAgent</code></li>
+      <li>A separate Cloud Run service hosts the FastAPI frontend</li>
+    </ul>
+    <p>The hardest part wasn't the agent logic. It was the auth between services — <code>RemoteA2aAgent</code> needs <code>httpx</code> clients carrying the right Cloud Run service-account token, not API keys. That took longer than building all the agent prompts combined.</p>
+    <p>What the architecture buys is replaceability. Swapping the Gemini Researcher for a Claude Researcher next quarter is one URL change in the Orchestrator. No rewrite anywhere else.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/course-creator.html">Live demo →</a>
+  </div>
+  <div class="post-hashtags">#GoogleADK #A2A #MultiAgent</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
