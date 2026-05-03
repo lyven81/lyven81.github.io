@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ji Xing 吉星饭厅 — CNY Reservation — Lee Yih Ven</title>
+<meta name="description" content="Agent-ready CNY reservation page for Malaysian Chinese restaurants" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Ji Xing 吉星饭厅 — CNY Reservation</h1>
+  <p class="post-description">Agent-ready CNY reservation page for Malaysian Chinese restaurants</p>
+
+  <div class="post-body">
+    <p>A bilingual reservation page for a Malaysian Cantonese banquet restaurant during Chinese New Year. No phone calls, no half-filled forms, no abandoned bookings — built so AI agents can complete the reservation directly through the browser via the W3C WebMCP standard.</p>
+
+    <p>CNY reunion bookings are the largest revenue spike of the year for Malaysian Chinese restaurants. The customer-facing flow is still phone-driven for most mid-tier operators. The next problem is bigger: when customers ask Auto Browser, Gemini, or ChatGPT Atlas to handle the booking, pixel-clicking agents abandon multi-step forms with date pickers, dietary selectors, and seating-type variants. The merchant loses the modern customer and the future agent-driven customer in one go.</p>
+
+    <p>Ji Xing 吉星饭厅 ships as a single static HTML page (~2,000 lines, ~120 KB) on GitHub Pages. The catalog is 6 bilingual set menus from RM 688 (6-pax Reunion Set A) to RM 1,288 (10-pax Lucky Star Signature, VIP Room bundled). The slot grid covers 9 days (14–22 February 2026), 4 sittings per normal day, 2 dinner-only sittings on Reunion Eve and Day 1 — totalling 480 bookable slots across 30 tables.</p>
+
+    <p>The WebMCP layer is 7 typed tools registered per-view via <code>navigator.modelContext.provideContext()</code>:</p>
+
+    <ul>
+      <li><strong><code>searchSetMenus</code></strong> — filter by pax, dietary, max price</li>
+      <li><strong><code>getSetMenuDetails</code></strong> — full bilingual course list per set</li>
+      <li><strong><code>checkAvailability</code></strong> — typed table counts by mainHall/privateRoom/VIP per sitting (the killer tool)</li>
+      <li><strong><code>reserveTable</code></strong>, <strong><code>modifyReservation</code></strong>, <strong><code>cancelReservation</code></strong> — destructive, gated by <code>requestUserInteraction()</code></li>
+      <li><strong><code>getReservation</code></strong> — read-only lookup by booking reference</li>
+    </ul>
+
+    <p>The pattern that keeps showing up: agents on the homepage cannot trigger checkout. The destructive tool surface is exposed only on the page where the user is in that intent. WebMCP's per-view scoping is what makes this safer than a global tool registry.</p>
+
+    <p>The same architecture adapts to salon, dental, clinic, and gym booking — swap the catalog, keep the 5-view SPA and 7-tool contract. Annually reusable for next year's CNY by bumping the date window forward.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/ji-xing-cny-reservation/">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/ji-xing-cny-reservation-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#WebMCP #AgenticCommerce #MalaysianSME</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
