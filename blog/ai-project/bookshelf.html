@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bookshelf (multi-agent inventory planner) — Lee Yih Ven</title>
+<meta name="description" content="Four ADK agents plan inventory for Malaysian bookstores using deterministic pandas tools." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Bookshelf (multi-agent inventory planner)</h1>
+  <p class="post-description">Four ADK agents plan inventory for Malaysian bookstores using deterministic pandas tools.</p>
+  <div class="post-body">
+    <p>A Malaysian bookstore owner sits on 100,000 sales rows but rarely converts them into stocking decisions — what to push, drop, restock, source. Bookshelf is a 4-agent ADK pipeline that takes any inventory question and returns a focused brief grounded in the actual numbers.</p>
+    <p>Most chat-on-document tools (NotebookLM and similar) approximate aggregates from text chunks. They are fast and free, but for a 100k-row sales table they miss precision. Asking "RM impact of dropping these 8 SKUs?" gets a directional answer — useful for vibes, not for ordering.</p>
+    <p>The architecture goes the other way:</p>
+    <ul>
+      <li><strong>Researcher</strong> calls a deterministic pandas <code>data_tool</code> that computes per-SKU revenue, margin, velocity, Pareto rank, last-sale date, and aging class. The numbers are exact before the LLM ever sees them.</li>
+      <li><strong>Judge</strong> emits a Pydantic <code>JudgeVerdict</code> (status / issues / confidence / feedback). Loops up to 3× on fail.</li>
+      <li><strong>EscalationChecker</strong> is a five-line deterministic Python class that breaks the loop on pass. Not every component needs an LLM.</li>
+      <li><strong>Content Builder</strong> classifies SKUs into a 6-class taxonomy (push / hold / drop / restock-seasonal / discontinue / source-similar) and writes a 600-word Markdown brief.</li>
+    </ul>
+    <p>Tested against 101,990 rows of real Malaysian bookstore sales (385 SKUs, RM 18.87M revenue, Jan 2024 to Dec 2025). Five questions captured live: <em>what's selling, what to drop, when to stock for school season, aging clearance, best margin to push</em>. The aging question correctly surfaced the entire UPSR-syllabus cluster — UPSR was abolished in Malaysia in 2021, so any UPSR-prep book is structurally obsolete. The agents caught it without being told the SKU names.</p>
+    <p>The pattern that keeps showing up: chat-on-document tools win on speed; multi-agent systems win on precision and integration. ~140 seconds per Bookshelf brief vs sub-10 for NotebookLM is the cost of pandas + a quality gate + a typed verdict. For decisions worth thousands of ringgit, the trade is fair.</p>
+  </div>
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/bookshelf.html">Live demo →</a>
+    <a href="https://github.com/lyven81/ai-project/tree/main/projects/bookshelf">Source →</a>
+  </div>
+  <div class="post-hashtags">#GoogleADK #MultiAgent #DataAnalytics</div>
+</article>
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
