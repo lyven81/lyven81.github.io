@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Klinik Dr Fang — Front-Desk Pattern Assistant — Lee Yih Ven</title>
+<meta name="description" content="Clinic front-desk AI that finds patterns but can't leak data or write SQL" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Klinik Dr Fang — Front-Desk Pattern Assistant</h1>
+  <p class="post-description">A clinic front-desk AI that finds patterns but structurally can't leak data or write its own SQL</p>
+
+  <div class="post-body">
+    <p>Most "connect AI to your database" demos would hand over every patient record if you phrased the prompt cleverly enough. I built one for a clinic that structurally can't — and that's the whole point.</p>
+
+    <p>Klinik Dr Fang (a fictional single-doctor GP clinic) wanted plain-language answers about its own records: "any cluster of similar cases lately?", "who hasn't been in for over a year?" Wiring an LLM straight to the database would answer those questions. It would also be one prompt-injection away from dumping the entire patient table.</p>
+
+    <p>So the agent never touches the database. It sits behind a governed tool layer — the MCP Toolbox for Databases pattern — with exactly 10 pre-written, parameterized queries. There is deliberately no "run any SQL" tool. The agent picks the right approved tool and explains the result; it cannot author a query, change a <code>WHERE</code> clause, or reach a column a tool doesn't return.</p>
+
+    <p>The guardrail is four layers deep:</p>
+    <ul>
+      <li><strong>The toolset is the agent's entire universe</strong> — no <code>execute_sql</code> exists</li>
+      <li><strong>The SQL is fixed</strong>; only values bind, never concatenated</li>
+      <li><strong>Tools are scoped per role</strong> — the front desk sees only its own set</li>
+      <li><strong>The database connection is read-only</strong>, so writes are physically impossible</li>
+    </ul>
+
+    <p>Ask it to delete the no-shows or export every record, and it refuses — not by policy, but because the capability doesn't exist. Ask it for a pattern, and it finds a real one: in the demo it flags a cluster of 7 similar presentations from the last two weeks, an early outbreak signal nobody searched for.</p>
+
+    <p>For any business with sensitive data, the real question isn't "can AI read my database?" It's "what exactly is it allowed to do?" — and that should be designed, not hoped for. The demo runs entirely in your browser on synthetic data (sql.js + WebAssembly) — no sign-up, no key — and the same governed-tool architecture scales up to Cloud SQL or AlloyDB without changing the safety story.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/klinik-dr-fang/demo.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/klinik-dr-fang-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIagents #DataGovernance #HealthTech</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
