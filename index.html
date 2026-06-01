@@ -173,13 +173,13 @@
   <div class="section-inner">
     <div class="section-head">
       <div class="section-head-text">
-        <div class="section-eyebrow">Featured Case Studies</div>
+        <div class="section-eyebrow">Latest Case Studies</div>
         <h2 class="section-title">Cases <em>that moved the needle.</em></h2>
         <p class="section-lede">From messy spreadsheet to a decision you can act on.</p>
       </div>
       <a href="https://lyven81.github.io/data-analyst-portfolio" class="see-all">See all case studies →</a>
     </div>
-    <div class="grid">
+    <div class="grid" id="cases-grid">
       <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/know-your-reseller.html" class="card"><div class="card-tag">Pricing</div><h4>Know Your Reseller</h4><p>Are reseller margins fair? Surfaced two underpriced channels.</p><span class="card-link">Read</span></a>
       <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/fixing-the-sales-leaks.html" class="card"><div class="card-tag">Optimization</div><h4>Fixing the Sales Leaks</h4><p>Funnel-stage diagnosis with concrete fixes, ranked by lift.</p><span class="card-link">Read</span></a>
       <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/forecast-chicken-rice-restaurent.html" class="card"><div class="card-tag">Forecasting</div><h4>Chicken Rice Demand</h4><p>Daily prep planning for an F&amp;B owner.</p><span class="card-link">Read</span></a>
@@ -195,13 +195,13 @@
   <div class="section-inner">
     <div class="section-head">
       <div class="section-head-text">
-        <div class="section-eyebrow">Featured AI Projects</div>
+        <div class="section-eyebrow">Latest AI Projects</div>
         <h2 class="section-title">AI projects, <em>built for real workflows.</em></h2>
         <p class="section-lede">Each one solves a specific SME pain — not a benchmark.</p>
       </div>
       <a href="https://lyven81.github.io/ai-project" class="see-all">See all AI projects →</a>
     </div>
-    <div class="grid">
+    <div class="grid" id="ai-grid">
       <a href="https://lyven81.github.io/ai-project/sundry-shop-assistant.html" class="card"><div class="card-tag">Voice AI</div><h4>Sundry Shop Voice Assistant</h4><p>Voice-first AI for Malaysian neighbourhood shops.</p><span class="card-link">Open</span></a>
       <a href="https://lyven81.github.io/ai-project/plumber-whatsapp-agent.html" class="card"><div class="card-tag">WhatsApp Agent</div><h4>Plumber WhatsApp Agent</h4><p>Booking + lead intake, token-lean, no framework bloat.</p><span class="card-link">Open</span></a>
       <a href="https://lyven81.github.io/ai-project/wee-auto-car-care.html" class="card"><div class="card-tag">Booking</div><h4>Wee Auto Car Care</h4><p>Staffed-bay booking dashboard for a Malaysian workshop.</p><span class="card-link">Open</span></a>
@@ -294,6 +294,48 @@
 </section>
 
 <footer>© 2026 Lee Yih Ven · Malaysia · Solo data consultancy, in the open</footer>
+
+<script>
+// Fill the Latest sections with the 6 newest posts from the blog listing
+// (blog/index.html is the single source of truth, maintained on each publish).
+// If the fetch fails, the hardcoded cards above remain as a fallback.
+(function () {
+  function cards(items, linkText) {
+    return items.map(function (it) {
+      return '<a href="' + it.href + '" class="card">' +
+        '<div class="card-tag">' + it.tag + '</div>' +
+        '<h4>' + it.title + '</h4><p>' + it.desc + '</p>' +
+        '<span class="card-link">' + linkText + '</span></a>';
+    }).join('');
+  }
+  function parse(doc, sectionId, fallbackTag) {
+    var ul = doc.querySelector('#' + sectionId + ' .post-list') ||
+             doc.querySelector('#' + sectionId + ' ul');
+    if (!ul) return [];
+    var links = Array.prototype.slice.call(ul.querySelectorAll('li a')).slice(0, 6);
+    return links.map(function (a) {
+      var full = a.textContent.replace(/\s+/g, ' ').trim();
+      var dash = full.indexOf('—');                 // em dash
+      var desc = dash >= 0 ? full.slice(dash + 1).trim() : '';
+      var strong = a.querySelector('strong');
+      var raw = (strong ? strong.textContent : (dash >= 0 ? full.slice(0, dash) : full)).trim();
+      var title = raw, tag = fallbackTag;
+      var m = raw.match(/^(.*?)\s*\((.+)\)\s*$/);          // "Title (subtitle)" -> tag = subtitle
+      if (m) { title = m[1].trim(); tag = m[2].trim(); }
+      return { href: 'blog/' + a.getAttribute('href'), title: title, tag: tag, desc: desc };
+    });
+  }
+  fetch('blog/index.html').then(function (r) { return r.text(); }).then(function (html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var ai = parse(doc, 'ai-projects', 'AI Project');
+    var cs = parse(doc, 'case-studies', 'Case Study');
+    var ag = document.getElementById('ai-grid');
+    var cg = document.getElementById('cases-grid');
+    if (ag && ai.length) ag.innerHTML = cards(ai, 'Open');
+    if (cg && cs.length) cg.innerHTML = cards(cs, 'Read');
+  }).catch(function () { /* keep fallback cards */ });
+})();
+</script>
 
 </body>
 </html>
