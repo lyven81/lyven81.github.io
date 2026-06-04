@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lucy — Bloom House Concierge — Lee Yih Ven</title>
+<meta name="description" content="Florist agent that resolves, escalates to a human, or declines" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Lucy — Bloom House Concierge</h1>
+  <p class="post-description">Florist agent that resolves, escalates to a human, or declines</p>
+
+  <div class="post-body">
+    <p>Lucy is a customer-service agent for Bloom House, an online florist. She talks to customers directly, and on every message she does exactly one of three things: resolves it, escalates it to a human, or politely declines it.</p>
+
+    <p>Generic store chat tools answer set FAQs and stop. A florist sale turns on two things they handle badly: recommending the right flowers for an emotional moment, and knowing when a message is too sensitive to automate. A late condolence stand is a reputation event, not a support ticket.</p>
+
+    <p>So Lucy's universe is eight fixed, approved tools. She picks which tool and supplies values only; she cannot author SQL, browse the schema, or call anything that writes. Recommendations and order lookups run as real parameterized queries against a SQLite catalogue compiled to WebAssembly (<code>sql.js</code>) in the browser.</p>
+
+    <p>The three outcomes are decided in order:</p>
+    <ul>
+      <li><strong>Resolve:</strong> recommend a real bouquet by occasion, budget and colour, or answer delivery, care, hours and store questions.</li>
+      <li><strong>Escalate:</strong> refunds, cancellations, order changes and upset customers go to a human, with a Situation / Order / Mood / Reason summary.</li>
+      <li><strong>Decline:</strong> staff details, suppliers, margins and off-topic questions are refused outright, never transferred.</li>
+    </ul>
+
+    <p>The safety comes from what is missing. There is no refund, cancel, or change tool, so those actions cannot happen autonomously. Ask Lucy to cancel an order and she hands you to the manager; ask for a staff member's phone number and she declines.</p>
+
+    <p>For any shop putting AI in front of customers, the question isn't "can it chat?" It's "what is it allowed to do?", and that belongs in the architecture, not the prompt.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/bloom-house-concierge/index.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/bloom-house-concierge-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIagents #CustomerService #RetailAI</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
