@@ -32,14 +32,14 @@
 
   /* Topbar */
   .topbar { padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; background: var(--cream); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
-  .brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; color: var(--navy); }
+  .brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; color: var(--navy); text-decoration: none; cursor: pointer; }
   .topnav { display: flex; gap: 1.6rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
   .topnav a { color: var(--muted); transition: color 0.2s; }
   .topnav a:hover { color: var(--navy); }
   @media (max-width: 720px) { .topnav { display: none; } }
 
   /* Compact hero */
-  .hero { padding: 4rem 2rem 2.5rem; max-width: 1180px; margin: 0 auto; }
+  .hero { padding: 4rem 2rem 2.5rem; }
   .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
   .hero-title { font-family: 'Playfair Display', serif; line-height: 1.1; color: var(--navy); font-weight: 900; margin-bottom: 1.5rem; max-width: 900px; }
   .hero-title em { color: var(--gold); font-style: normal; }
@@ -127,7 +127,7 @@
 <body>
 
 <header class="topbar">
-  <div class="brand">Lee Yih Ven</div>
+  <a href="#" class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Lee Yih Ven</a>
   <nav class="topnav">
     <a href="#cases">Case Studies</a>
     <a href="#ai">AI Projects</a>
@@ -140,11 +140,13 @@
 
 <!-- HERO (compact, name-led) -->
 <section class="hero">
-  <div class="hero-eyebrow">Pau Analytics · Malaysia</div>
-  <h1 class="hero-title">
-    <span class="hero-name">Lee Yih Ven.</span>
-    <span class="hero-tagline">Turning business data into <em>decisions</em>.</span>
-  </h1>
+  <div class="section-inner">
+    <div class="hero-eyebrow">Pau Analytics · Malaysia</div>
+    <h1 class="hero-title">
+      <span class="hero-name">Lee Yih Ven.</span>
+      <span class="hero-tagline">Turning business data into <em>decisions</em>.</span>
+    </h1>
+  </div>
 </section>
 
 <!-- (pillars row removed; page now leads with Latest Case Studies) -->
