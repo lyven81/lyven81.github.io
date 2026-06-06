@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Research Agent: Governed Location Intelligence at Near-Zero Cost — Lee Yih Ven</title>
+<meta name="description" content="Governed market-research agent answering 10 shop-owner questions, near-zero cost." />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Market Research Agent: Governed Location Intelligence at Near-Zero Cost</h1>
+  <p class="post-description">Governed market-research agent answering 10 shop-owner questions, near-zero cost.</p>
+
+  <div class="post-body">
+    <p>A market research agent for a tong shui (Chinese dessert) shop, built so the running cost stays near zero. The trick is not a smarter model. It is refusing to let the model do the expensive things.</p>
+
+    <p>The questions a shop owner asks before opening are predictable: where is the foot traffic, how saturated is the area, what do competitors charge, what sells, what do reviews complain about. The tempting way to answer them is to wire a model to live SQL and a live Google Maps key. That answers everything, and it bills you on every single question.</p>
+
+    <p>So this agent never writes SQL. It picks from 10 fixed, parameterized queries over a 7-table data pack. Six of the ten are pure local SQL at near-zero cost. The other four read Google Maps results that were cached on a schedule, so Maps is billed only when the cache refreshes, never per question. The model's one job is to route the question to an approved tool and phrase the answer.</p>
+
+    <p>On the Klang Valley demo data it reads like a real brief:</p>
+    <ul>
+      <li>SS2 has the strongest evening foot traffic and 17 dessert shops already, so it is saturated</li>
+      <li>Kepong carries the same evening crowd with only 4 shops mapped, the opportunity pocket</li>
+      <li>competitors cluster around RM5.50, leaving the RM6.50 to RM7.50 band empty</li>
+      <li>mango pomelo sago is the growing bestseller while plain green bean soup is slipping</li>
+    </ul>
+
+    <p>The discipline a fixed toolset imposes is the point. A governed agent cannot leak data, cannot run a destructive query, and cannot quietly run up an API bill, because those capabilities were never built. The same 7 tables and 10 questions work for a chicken rice shop or an optician; only the data pack changes.</p>
+
+    <p>For a small business question, the useful design is not "can AI answer this?" It is "what is it allowed to do, and what does each answer cost?"</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://market-research-agent-522143897885.asia-southeast1.run.app">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/market-research-agent-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIagents #DataGovernance #MarketResearch</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
