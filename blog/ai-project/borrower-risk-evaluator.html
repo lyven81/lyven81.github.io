@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Borrower Risk Evaluator — Lee Yih Ven</title>
+<meta name="description" content="Loan-default classifier that measures its own accuracy" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Borrower Risk Evaluator</h1>
+  <p class="post-description">Loan-default classifier that measures its own accuracy</p>
+
+  <div class="post-body">
+    <p>Most AI demos report a confidence score that nobody ever checks. Borrower Risk Evaluator checks it.</p>
+
+    <p>Classifying records is the easy half of an AI build. The hard half, usually skipped, is evaluation: proving with evidence that the output is any good. This project keeps the classifier deliberately simple and spends its effort on the proof.</p>
+
+    <p>The data is a public lending set of 32,577 labelled loans, about 21% of them ending in default. The pieces:</p>
+
+    <ul>
+      <li><strong>The brain:</strong> Google Gemini (<code>gemini-2.5-flash</code>) returns a typed verdict for each borrower, a <code>status</code>, a <code>confidence</code>, and a one-line <code>reason</code>, through structured output. The borrower's facts go in; the real outcome never does.</li>
+      <li><strong>The gate:</strong> a short deterministic rule, not a model, routes each borrower to auto-approve, auto-flag, or send-to-human based on how sure the model is. Not every part needs an LLM.</li>
+      <li><strong>The proof:</strong> every prediction is scored against the real <code>Current_loan_status</code> label, producing accuracy, precision, recall, F1, a confusion matrix, and accuracy on the cases the model cleared on its own. Each number carries a 95% confidence interval, so the margin of error is visible rather than hidden.</li>
+    </ul>
+
+    <p>A lazy model that calls every borrower "no default" already scores about 79% accuracy here while catching zero defaults. That is exactly why precision and recall, not accuracy, carry the story, and why measuring confidence matters when language-model confidence is so often miscalibrated.</p>
+
+    <p>The demo classifies 150 held-out borrowers live with your own Gemini key, and a built-in guide explains what changes to run this on thousands. Framed as decision support, not auto-rejection: a human owns the final call.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/borrower-risk-evaluator/demo.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/borrower-risk-evaluator-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIEngineering #MachineLearning #ModelEvaluation</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
