@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Motor Claim Triage and QC Evaluator: Scoring Only the Fraud It Can Prove — Lee Yih Ven</title>
+<meta name="description" content="Motor claim triage with a fraud scorecard on real outcomes." />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Motor Claim Triage and QC Evaluator: Scoring Only the Fraud It Can Prove</h1>
+  <p class="post-description">A motor claim triage tool that grades only the part it can prove.</p>
+
+  <div class="post-body">
+    <p>Most fraud scores are sold as a black box and never checked against the insurer's own claims. This one is built the other way round.</p>
+
+    <p>The Motor Claim Triage and QC Evaluator does two jobs and stays honest about which it can measure. It sorts every claim into one of five handling lanes: fast-track, standard review, complex or high-value, investigate (SIU), and repudiate-candidate. That part is operational routing, shown as a distribution. Only one axis carries a real label in the data, fraud, so only the fraud flags are scored.</p>
+
+    <p><code>gemini-2.5-flash</code> reads the claim facts and returns a typed verdict (lane, fraud risk, confidence, reason) as strict JSON. It never sees the outcome. A short deterministic rule, not the model, makes the routing call: at or above the dial a claim goes to investigation, a repudiation candidate always reaches a person, and nothing is auto-denied.</p>
+
+    <p>Then the scorecard. Against the real <code>FraudFound_P</code> label it reports catch rate, flag accuracy, false-alarm rate, F1, and accuracy on the claims the model was most sure about, each with a 95% Wilson confidence interval. The data is the Kaggle vehicle-fraud set: 15,420 real claims, 150 sampled for the demo. Fraud runs near 6 in 100, too rare to measure in a small sample, so the demo rebalances to roughly 40 fraud in 150 and discloses it on the page.</p>
+
+    <p>The honest move is the restraint: five lanes look impressive, but four of them have no answer key, so the tool refuses to claim accuracy it cannot show. On a rare event a model can look 94% accurate by clearing every claim. The scorecard exists to catch exactly that.</p>
+
+    <p>Measuring an AI's output, not just producing it, is the part most demos skip.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/motor-claim-evaluator/demo.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/motor-claim-evaluator-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#GeminiAI #InsurTech #AIEvaluation</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
