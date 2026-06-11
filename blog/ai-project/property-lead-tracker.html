@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Property Lead Tracker — Lee Yih Ven</title>
+<meta name="description" content="Lead attribution system: which channel signs tenants, what each costs" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Property Lead Tracker</h1>
+  <p class="post-description">Lead attribution system: which channel signs tenants, what each costs</p>
+
+  <div class="post-body">
+    <p>A lead source intelligence system for a property rental agency. One data model of 1,140 enquiries, two outputs: a detailed internal dashboard for the agent, and a white-label one-page report for each landlord.</p>
+
+    <p>The problem it targets is attribution. A rental agency takes enquiries through five channels (PropertyGuru, Mudah.my, Google Ads, Meta Ads, WhatsApp referral), and standard analytics counts leads rather than tenants and misses phone calls entirely. The fix is to separate two fields the platforms blur: the source a lead came from, and the contact method it arrived by, whether portal chat, WhatsApp, phone call, or lead form. That separation is what turns a pile of messages into a channel scoreboard.</p>
+
+    <p>The build is deliberately backend-light:</p>
+
+    <ul>
+      <li><strong>Python + pandas</strong> analytics over a seed-fixed, reproducible dataset</li>
+      <li>A <strong>Chart.js</strong> five-tab internal dashboard: source comparison, listing velocity, lead quality, responsiveness</li>
+      <li>A <strong>Jinja2</strong> template that renders a branded owner report per listing and month, white-labelled per agency through one CSS block</li>
+      <li>A <strong>threshold-rule insight engine</strong> that writes the month's recommendations, with optional Claude polish</li>
+      <li>A <strong>Power BI data model and DAX</strong> spec mirroring the dashboard for a Microsoft-BI client</li>
+    </ul>
+
+    <p>The intelligence layer is rules, not a model. For fully structured enquiry records, a transparent rule beats a black box: consistent, auditable, free, and the owner can see exactly why a listing was flagged stale or a channel was called a volume trap. The same yardstick produces the headline the agent reads, cost per signed tenancy, which ranged from RM0 for referrals to RM2,400 for Meta.</p>
+
+    <p>Everything clones: a new listing is one row, a new landlord is one generated report, a new agency is one colour change.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/property-lead-tracker/ui-1-internal-dashboard.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/property-lead-tracker-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIEngineering #PropTech #DataPipelines</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
