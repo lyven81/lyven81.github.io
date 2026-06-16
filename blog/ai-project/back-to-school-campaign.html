@@ -34,7 +34,7 @@
       <li><strong>Blog</strong> — narrative, mum-buying-last-minute story</li>
       <li><strong>SEO</strong> — keyword-dense paragraph for Google ("baju sekolah murah Bangi")</li>
     </ul>
-    <p>The architecture is intentionally minimal. Single static HTML page, Vanilla JS, Gemini 2.0 Flash via BYO-key (the user provides their own API key, no SaaS subscription). No backend. No database. Hosted on GitHub Pages, free.</p>
+    <p>The architecture is intentionally minimal. Single static HTML page, Vanilla JS, Gemini 2.5 Flash-Lite via BYO-key (the user provides their own API key, no SaaS subscription). No backend. No database. Hosted on GitHub Pages, free.</p>
     <p>The interesting part is the prompt structure. One system prompt holds all five channel templates. The brief gets injected once. Gemini returns five outputs in a single call — fewer round trips, lower cost per campaign, and consistent voice across channels because they're generated together rather than separately.</p>
     <p>For a Malaysian SME owner running marketing herself between walk-ins, the friction this removes is real. Three minutes from preset selection to first WhatsApp broadcast pasted. The same five outputs would take 30+ minutes of re-prompting on a free chat tool.</p>
   </div>
