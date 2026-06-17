@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voucher Analyzer — Lee Yih Ven</title>
+<meta name="description" content="Which vouchers truly drove sales, scored per category" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Voucher Analyzer</h1>
+  <p class="post-description">Which vouchers truly drove sales, scored per category</p>
+
+  <div class="post-body">
+    <p>A voucher analyzer for a small Southeast Asian online seller, the kind that runs monthly store vouchers on top of the 11.11 and 12.12 mega-campaigns. It answers the question raw campaign sales cannot: of everything that sold during a promotion, how much would have sold anyway?</p>
+
+    <p>Every campaign spikes sales, so every voucher looks like a winner. But part of each discount lands on buyers who were going to purchase regardless. That part is subsidy, not lift, and a sales report cannot see it. Separating the two is the entire job.</p>
+
+    <p>The engine estimates incrementality blind to the answer. It learns each category's ordinary order rate from non-campaign days, then treats the excess during campaigns as voucher-driven, a baseline-counterfactual in the difference-in-differences spirit. On a simulated book of 2,678 redemptions across 7 voucher types, the estimate recovers a 45% incremental share against a true 46%. The naive read, counting every redemption as new, would have claimed 100%.</p>
+
+    <p>From there each voucher is costed out and ranked:</p>
+    <ul>
+      <li><strong>F1</strong>, a small RM5 fixed voucher, adds the most real margin.</li>
+      <li><strong>P3</strong>, the 20% voucher, is the only one that loses money: the discount runs deeper than the margin it returns.</li>
+      <li><strong>Grocery and Toys</strong> lose on every voucher, while the fatter categories carry the whole program.</li>
+    </ul>
+
+    <p>The recovery check is the part that matters. An estimate of something unobservable is only worth trusting if it can be shown to land on a known answer, so the true <code>was_incremental</code> flag is withheld from everything the tool can query and used only to grade the estimate. The gap between the 46% truth and the 100% naive read is exactly why one flat voucher rule quietly leaks margin.</p>
+
+    <p>The output is a per-category plan: which mechanic, how deep, and what to stop. The questions run as fixed, read-only SQL in the browser, so the demo is free to host and has no key to leak.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/voucher-analyzer/demo.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/voucher-analyzer-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#Incrementality #Ecommerce #PromotionAnalytics</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
