@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seasonal Pricing Console — Lee Yih Ven</title>
+<meta name="description" content="In-browser pricing console with a governed query layer" />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Seasonal Pricing Console</h1>
+  <p class="post-description">In-browser pricing console with a governed query layer</p>
+
+  <div class="post-body">
+    <p>A seasonal pricing console for short-term rental hosts. It runs entirely in the browser, no backend and no API key, and answers pricing questions with fixed, read-only SQL rather than a chatbot's free text.</p>
+    <p>The point is not another chat window. A host needs the profit-maximizing nightly rate for each of 15 Ipoh listings by season, and a reason to trust it. The app is the harness around that, not a wrapper on a model.</p>
+    <p>The console has four screens: Overview, Price Sensitivity, Recommended Rates, and The Pricing Questions. The brain underneath is a difference-in-differences elasticity estimator with listing fixed effects and a weekend control, built and proven before any screen was styled. On data with a baked-in known elasticity, the estimate recovers it with a mean error of 0.224 against 0.713 for a naive read, inside the 95% interval in all 12 type-season cells.</p>
+    <p>The Pricing Questions tab is the governed layer. Ten answers come from the locked results; four run live as fixed <code>sql.js</code> queries over a small <code>rates</code> table inside the browser:</p>
+    <ul>
+      <li>The query layer <strong>picks an approved track and binds values</strong> only, never authoring its own SQL.</li>
+      <li>The hidden true elasticity stays in an eval-only column the queries can never reach.</li>
+      <li>Every figure is computed, not generated, so the same question returns the same number every time.</li>
+    </ul>
+    <p>The moat is the governed query layer and the recovery check, the two things a chat model or NotebookLM cannot do over tabular data. Strip those and it collapses into a wrapper.</p>
+    <p>The result is 15 listings priced, about RM254,138 in projected annual uplift, and a console a host can open and act on with no key to leak.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-project/projects/seasonal-pricing-console/demo.html">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/seasonal-pricing-console-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#sqljs #RevenueManagement #GovernedAI</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
