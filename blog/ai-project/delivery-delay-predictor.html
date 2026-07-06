@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Delivery Delay Predictor — Lee Yih Ven</title>
+<meta name="description" content="Predicts late e-commerce deliveries before they ship." />
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><a href="../../">Lee Yih Ven</a></div>
+  <nav class="topnav">
+    <a href="../">Blog</a>
+    <a href="../../#about">About</a>
+    <a href="../../#connect">Connect</a>
+  </nav>
+</header>
+
+<article class="post">
+  <div class="post-eyebrow">AI Project</div>
+  <h1 class="post-title">Delivery Delay Predictor</h1>
+  <p class="post-description">Predicts late e-commerce deliveries before they ship.</p>
+
+  <div class="post-body">
+    <p>An e-commerce fulfillment team usually learns an order was late the same way the customer does: after it fails. By then the refund is already owed and the complaint is already written. Delivery Delay Predictor moves that moment earlier, scoring every open order's risk of arriving late before it ships.</p>
+
+    <p>The model is deliberately restricted. It trains on 13 signals known before dispatch (delivery zone, courier, service level, requested window, daily order volume) and drops the 17 outcome columns that describe what already happened. On 2,409 orders with a 12% late rate it reaches a ROC-AUC of 0.776 and a PR-AUC of 0.487, roughly four times the base rate. Precision and recall, not accuracy, are the honest measures when the event is rare.</p>
+
+    <p>A score on its own is a black box, so a SHAP tree explainer attaches the single biggest driver to each flagged order: a tight requested window, high daily volume, a specific courier, or a known-slow zone. The priority alert list reads as reasons, not numbers.</p>
+
+    <p>The dashboard sits on a full Google Cloud stack. Order data lives in <code>BigQuery</code>. The <code>XGBoost</code> model is served inside the <code>Cloud Run</code> container itself, with no always-on prediction endpoint, so the app scales without a standing cost. <code>Gemini 2.5 Flash</code> on Vertex AI reads the live metrics, returns three specific recommendations, and answers typed questions grounded only in those numbers. When no credentials are present it falls back to data-driven recommendations, so the demo never breaks.</p>
+
+    <p>The pattern that keeps showing up: the useful move is not a better after-the-fact report, it is pushing the decision earlier, to the point where someone can still act. A late order flagged before dispatch is a problem you can fix. The same order on a dashboard tomorrow is only a number.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://delivery-delay-predictor-522143897885.asia-southeast1.run.app">Live demo →</a>
+    <a href="https://lyven81.github.io/ai-project/delivery-delay-predictor-source.html">Source →</a>
+  </div>
+
+  <div class="post-hashtags">#AIEngineering #PredictiveAnalytics #Ecommerce</div>
+</article>
+
+<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../../">Home</a></footer>
+</body>
+</html>
