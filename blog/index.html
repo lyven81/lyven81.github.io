@@ -4,62 +4,130 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Blog — Lee Yih Ven</title>
-<meta name="description" content="Build notes and analysis from recent case studies and AI projects." />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+<meta name="description" content="Every case study and AI project, with its cover, its story, and a link to the full report or live demo." />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--ink:#222;--paper:#fff;--rule:#222;--hair:#dddddd;--gray:#555;--accent-link:#007BFF;}
+  body{background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  a:hover h3,a:hover h4{color:var(--accent-link);}
+  .site-header{position:sticky;top:0;z-index:100;background:var(--paper);}
+  .masthead{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:1240px;margin:0 auto;gap:18px;}
+  .mast-left{display:flex;align-items:center;gap:20px;}
+  .logo{background:#222;color:#fff;font-weight:700;letter-spacing:3px;font-size:.95rem;padding:8px 12px;white-space:nowrap;}
+  .mast-nav{display:flex;gap:20px;font-size:.72rem;letter-spacing:1.4px;text-transform:uppercase;}
+  .mast-nav a:hover{color:var(--accent-link);}
+  .hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px;}
+  .hamburger span{width:22px;height:2px;background:#222;display:block;}
+  .rule-top{border:none;border-top:3px solid var(--rule);max-width:1240px;margin:0 auto;}
+  .drawer{position:fixed;top:0;left:-300px;width:280px;height:100vh;background:#fff;z-index:200;box-shadow:2px 0 14px rgba(0,0,0,.15);transition:left .28s ease;padding:74px 26px 26px;}
+  .drawer.open{left:0;} .drawer a{display:block;font-size:.82rem;letter-spacing:1.2px;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--hair);}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:150;} .overlay.open{display:block;}
+  .drawer-close{position:absolute;top:20px;right:20px;font-size:1.4rem;background:none;border:none;cursor:pointer;}
+  .blog-intro{max-width:1240px;margin:0 auto;padding:30px 28px 6px;}
+  .blog-intro .tab{display:inline-block;background:#222;color:#fff;font-weight:700;font-size:.66rem;letter-spacing:2px;text-transform:uppercase;padding:6px 12px;margin-bottom:14px;}
+  .blog-intro h1{font-size:2.2rem;font-weight:900;line-height:1.05;margin-bottom:8px;}
+  .blog-intro p{color:var(--gray);}            /* full width (no max-width) */
+  /* Tab bar */
+  .tabbar{max-width:1240px;margin:14px auto 0;padding:0 28px;display:flex;gap:10px;border-bottom:1px solid var(--hair);}
+  .tabbtn{appearance:none;background:none;border:none;cursor:pointer;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--gray);padding:14px 6px;border-bottom:3px solid transparent;margin-bottom:-1px;}
+  .tabbtn:hover{color:var(--ink);}
+  .tabbtn.active{color:var(--ink);border-bottom-color:var(--accent-link);}
+  .pane{display:none;} .pane.active{display:block;}
+  section.block{max-width:1240px;margin:0 auto;padding:26px 28px 10px;}
+  .section-head{display:flex;justify-content:flex-end;align-items:center;margin-bottom:2px;}
+  .see-more{font-size:.66rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gray);} .see-more:hover{color:var(--accent-link);}
+  .rubric{font-size:.6rem;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent-link);display:block;margin-bottom:5px;}
+  /* 2 x 5 magazine grid */
+  .card-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:3px solid var(--rule);margin-top:6px;}
+  .gcard{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:18px 22px 22px;}
+  .gcard:nth-child(2n){border-right:none;}
+  .gcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:12px;background:#eee;}
+  .gcard h4{font-size:1.12rem;font-weight:700;line-height:1.2;margin-bottom:6px;}
+  .gcard p{font-size:.84rem;color:var(--gray);}
+  footer{background:#222;max-width:1240px;margin:24px auto 0;padding:24px 28px;font-size:.8rem;letter-spacing:.5px;color:#fff;text-align:center;}
+  @media(max-width:900px){.mast-nav{display:none;}.hamburger{display:flex;}.card-grid{grid-template-columns:1fr;}.gcard{border-right:none;}}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="brand"><a href="../">Lee Yih Ven</a></div>
-  <nav class="topnav">
-    <a href="../#cases">Case Studies</a>
-    <a href="../#ai">AI Projects</a>
-    <a href="../#about">About</a>
-    <a href="../#connect">Connect</a>
-  </nav>
-</header>
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer"><button class="drawer-close" id="drawerClose">&times;</button>
+  <a href="https://lyven81.github.io/#cases">Case Studies</a><a href="https://lyven81.github.io/#ai">AI Projects</a>
+  <a href="#">Blog</a><a href="https://lyven81.github.io/#stack">Stack</a>
+  <a href="https://lyven81.github.io/#about">About</a><a href="https://lyven81.github.io/#connect">Connect</a></nav>
+<header class="site-header"><div class="masthead"><div class="mast-left">
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <a class="logo" href="https://lyven81.github.io/">LEE YIH VEN</a>
+  <nav class="mast-nav"><a href="https://lyven81.github.io/#cases">Case Studies</a><a href="https://lyven81.github.io/#ai">AI Projects</a>
+  <a href="#">Blog</a><a href="https://lyven81.github.io/#stack">Stack</a>
+  <a href="https://lyven81.github.io/#about">About</a><a href="https://lyven81.github.io/#connect">Connect</a></nav>
+</div></div><hr class="rule-top"></header>
 
-<section class="blog-hero">
-  <div class="blog-hero-eyebrow">Blog · Build Notes</div>
+<div class="blog-intro">
+  <span class="tab">Blog · Build Notes</span>
   <h1>Building in the open.</h1>
-  <p>Notes from recent case studies and AI projects. Each entry pairs with a full report or live demo. The 10 most recent of each type are listed here.</p>
+  <p>Every case study and AI project, with its cover, its story, and a link to the full report or live demo. The 10 most recent of each.</p>
+</div>
+
+<div class="tabbar">
+  <button class="tabbtn active" data-t="hub">Data Stories Lab</button>
+  <button class="tabbtn" data-t="lab">AI Build Lab</button>
+</div>
+
+<section class="block pane active" id="hub">
+  <div class="section-head"><a class="see-more" href="https://lyven81.github.io/data-analyst-portfolio">See all case studies &rarr;</a></div>
+  <div class="card-grid" id="csGrid"></div>
 </section>
 
-<section class="blog-section" id="ai-projects">
-  <h2>AI Projects</h2>
-  <ul class="post-list">
-    <li><a href="ai-project/delivery-delay-predictor.html"><strong>Delivery Delay Predictor (predictive operations)</strong>. Scores every open order's delay risk before dispatch, and names the driver behind each at-risk order.</a></li>
-    <li><a href="ai-project/courier-cs-quality-console.html"><strong>Courier CS Quality Console (CS quality measurement)</strong>. Grades 1,200 courier support contacts, AI and human, and finds the high-stakes cases closed instead of escalated.</a></li>
-    <li><a href="ai-project/seasonal-pricing-console.html"><strong>Seasonal Pricing Console (governed pricing)</strong> — In-browser console: the profit-max nightly rate per Airbnb listing by season.</a></li>
-    <li><a href="ai-project/voucher-analyzer.html"><strong>Voucher Analyzer (promotion incrementality)</strong>. Which vouchers truly drove sales, not just which sold, scored per category.</a></li>
-    <li><a href="ai-project/property-lead-tracker.html"><strong>Property Lead Tracker (lead attribution)</strong> — Five lead channels, 1,140 enquiries: which one signs tenants, and at what cost.</a></li>
-    <li><a href="ai-project/motor-claim-evaluator.html"><strong>Motor Claim Triage and QC Evaluator (fraud QC)</strong>. Sorts every claim into four categories with a fixed rule, then scores the fraud flags on real outcomes.</a></li>
-    <li><a href="ai-project/borrower-risk-evaluator.html"><strong>Borrower Risk Evaluator (loan-default classifier)</strong> — Classifies real loans and scores its own accuracy live against the recorded outcomes.</a></li>
-    <li><a href="ai-project/market-research-agent.html"><strong>Market Research Agent (governed location intelligence)</strong>. Answers 10 shop-owner questions from a data pack and cached Maps, near-zero cost.</a></li>
-    <li><a href="ai-project/bloom-house-concierge.html"><strong>Lucy — Bloom House Concierge (governed florist agent)</strong> — Resolves routine asks, escalates sensitive cases to a human, declines the rest.</a></li>
-    <li><a href="ai-project/klinik-dr-fang.html"><strong>Klinik Dr Fang (governed clinic assistant)</strong> — Front-desk AI finds patterns over patient records but structurally can't leak data.</a></li>
-  </ul>
+<section class="block pane" id="lab">
+  <div class="section-head"><a class="see-more" href="https://lyven81.github.io/ai-project">See all AI projects &rarr;</a></div>
+  <div class="card-grid" id="aiGrid"></div>
 </section>
 
-<section class="blog-section" id="case-studies">
-  <h2>Case Studies</h2>
-  <ul class="post-list">
-    <li><a href="case-study/the-quiet-slide.html"><strong>The Quiet Slide</strong>. A delivery-app shop's sales held steady while orders quietly fell 37%.</a></li>
-    <li><a href="case-study/when-blooms-arrive-late.html"><strong>When Blooms Arrive Late</strong>. A florist's refund log blamed damage; 70% of the money was on orders that ran late.</a></li>
-    <li><a href="case-study/one-brand-four-reputations.html"><strong>One Brand, Four Reputations</strong>. One coffee shop reads as a leader on Google and a laggard on Facebook, 20 points apart.</a></li>
-    <li><a href="case-study/before-they-leave.html"><strong>Before They Leave</strong>. The riskiest 20% of bank customers held 65% of all the leavers.</a></li>
-    <li><a href="case-study/what-a-cars-worth.html"><strong>What a Car's Worth</strong>. Four plain features explain 94% of a used car's price.</a></li>
-    <li><a href="case-study/what-a-ringgit-returns.html"><strong>What a Ringgit Returns</strong>. Across 120 campaigns, spend level beat channel: every RM1 returned about RM3.21.</a></li>
-    <li><a href="case-study/what-moves-the-cooler.html"><strong>What Moves the Cooler</strong>. Four things you can see explain 93% of a store's daily drink sales.</a></li>
-    <li><a href="case-study/riding-the-growth-curve.html"><strong>Riding the Growth Curve</strong>. An online store tripled in three years; the risk is cash, not demand.</a></li>
-    <li><a href="case-study/plan-for-the-peaks.html"><strong>Plan for the Peaks</strong>. A 120-room resort looks steady yearly but is wrong every single month.</a></li>
-    <li><a href="case-study/know-when-to-reorder.html"><strong>Know When to Reorder</strong>. A bookshop loses RM1.49M in sales to bad stock timing, not bad buying.</a></li>
-  </ul>
-</section>
+<footer>&copy; 2026 Lee Yih Ven</footer>
 
-<footer>© 2026 Lee Yih Ven · Malaysia · <a href="../">Home</a></footer>
+<script>
+const CS_BLOG='https://lyven81.github.io/blog/case-study/', AI_BLOG='https://lyven81.github.io/blog/ai-project/';
+const CI='https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/', AI_IMG='https://lyven81.github.io/ai-project/images/';
+const CASES=[
+ {s:'the-quiet-slide',c:CI+'the-quiet-slide/cover%20image.jpeg',tag:'Operations',t:'The Quiet Slide',d:'Why higher average order value can mislead'},
+ {s:'when-blooms-arrive-late',c:CI+'when-blooms-arrive-late/cover.jpeg',tag:'Operations',t:'When Blooms Arrive Late',d:'How late deliveries drain a florist margin'},
+ {s:'one-brand-four-reputations',c:CI+'one-brand-four-reputations/cover.jpeg',tag:'Segmentation',t:'One Brand, Four Reputations',d:'See where a coffee shop reputation wins and leaks'},
+ {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
+ {s:'what-a-cars-worth',c:CI+'what-a-cars-worth/cover%20image.jpeg',tag:'Regression',t:"What a Car's Worth",d:'Mileage, age and brand set the fair price'},
+ {s:'what-a-ringgit-returns',c:CI+'what-a-ringgit-returns/cover%20image.jpeg',tag:'Marketing ROI',t:'What a Ringgit Returns',d:'Every RM1 of ad spend returns about RM3.21'},
+ {s:'what-moves-the-cooler',c:CI+'what-moves-the-cooler/cover%20image.jpeg',tag:'Forecasting',t:'What Moves the Cooler',d:'Heat, price and promotions drive daily drink sales'},
+ {s:'riding-the-growth-curve',c:CI+'riding-the-growth-curve/cover%20image.jpeg',tag:'Growth',t:'Riding the Growth Curve',d:'Fast growth, with a clear year-end festive lift'},
+ {s:'plan-for-the-peaks',c:CI+'plan-for-the-peaks/cover%20image.jpeg',tag:'Seasonality',t:'Plan for the Peaks',d:'Bookings double by season, with no yearly growth'},
+ {s:'know-when-to-reorder',c:CI+'know-when-to-reorder/cover%20image.png',tag:'Inventory',t:'Know When to Reorder',d:'Reorder stock in time to stop losing sales'},
+];
+const AIS=[
+ {s:'delivery-delay-predictor',c:AI_IMG+'delivery-delay-predictor/cover.jpeg',tag:'Predictive Operations',t:'Delivery Delay Predictor',d:'Predicts late e-commerce deliveries before orders ship'},
+ {s:'courier-cs-quality-console',c:AI_IMG+'courier-cs-quality-console/cover.jpeg',tag:'CS Quality',t:'Courier CS Quality Console',d:'Measures and improves customer-service quality for courier teams'},
+ {s:'seasonal-pricing-console',c:AI_IMG+'seasonal-pricing-console/cover.jpeg',tag:'Governed Pricing',t:'Seasonal Pricing Console',d:'Shows rental hosts the profit-max nightly rate by season'},
+ {s:'voucher-analyzer',c:AI_IMG+'voucher-analyzer/cover.jpeg',tag:'Incrementality',t:'Voucher Analyzer',d:'Shows sellers which vouchers actually made money'},
+ {s:'property-lead-tracker',c:AI_IMG+'property-lead-tracker/cover.jpeg',tag:'Lead Attribution',t:'Property Lead Tracker',d:'Shows which lead channel actually signs your tenants'},
+ {s:'motor-claim-evaluator',c:AI_IMG+'motor-claim-evaluator/cover.jpeg',tag:'Fraud QC',t:'Motor Claim Triage and QC Evaluator',d:'Deterministic claim triage for insurers, scored on fraud'},
+ {s:'borrower-risk-evaluator',c:AI_IMG+'borrower-risk-evaluator/cover.jpeg',tag:'Classifier',t:'Borrower Risk Evaluator',d:'Loan-default classifier that proves its own accuracy for lenders'},
+ {s:'market-research-agent',c:AI_IMG+'market-research-agent/cover.jpeg',tag:'Location Intelligence',t:'Market Research Agent',d:'Location-intelligence agent for local shop owners'},
+ {s:'bloom-house-concierge',c:AI_IMG+'bloom-house-concierge/cover.jpeg',tag:'Governed Agent',t:'Lucy, Bloom House Concierge',d:'Florist concierge that recommends, escalates, or politely declines'},
+ {s:'klinik-dr-fang',c:AI_IMG+'klinik-dr-fang/cover.jpeg',tag:'Clinic Assistant',t:'Klinik Dr Fang',d:'Front-desk assistant that finds patterns across patient records'},
+];
+const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
+document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
+document.getElementById('aiGrid').innerHTML=AIS.map(c=>gcard(c,AI_BLOG)).join('');
+// tabs
+document.querySelector('.tabbar').addEventListener('click',e=>{
+  const b=e.target.closest('.tabbtn'); if(!b) return;
+  document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById(b.dataset.t).classList.add('active');
+});
+// drawer
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
+const open=()=>{drawer.classList.add('open');overlay.classList.add('open');},close=()=>{drawer.classList.remove('open');overlay.classList.remove('open');};
+document.getElementById('hamburger').onclick=open;document.getElementById('drawerClose').onclick=close;overlay.onclick=close;
+drawer.querySelectorAll('a').forEach(a=>a.onclick=close);
+</script>
 </body>
 </html>
