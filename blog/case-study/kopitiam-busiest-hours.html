@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Late Morning Rush — Lee Yih Ven</title>
+<meta name="description" content="Weekends and the 11am hour carry the sales." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{ --ink:#222; --paper:#fff; --rule:#222; --hair:#dddddd; --gray:#555; --accent-link:#007BFF; --navy:#002D55; --accent:#004B87; --mute:#6b7280; }
+  body{ background:var(--paper); color:var(--ink); font-family:"Source Serif 4",Georgia,"Times New Roman",serif; line-height:1.65; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  .site-header{ position:sticky; top:0; z-index:100; background:var(--paper); }
+  .masthead{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1240px; margin:0 auto; gap:18px; font-family:Arial, Helvetica, sans-serif; }
+  .mast-left{ display:flex; align-items:center; gap:20px; }
+  .logo{ background:#222; color:#fff; font-weight:700; letter-spacing:3px; font-size:.95rem; padding:8px 12px; white-space:nowrap; }
+  .mast-nav{ display:flex; gap:20px; font-size:.72rem; letter-spacing:1.4px; text-transform:uppercase; }
+  .mast-nav a:hover{ color:var(--accent-link); }
+  .hamburger{ display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; padding:6px; }
+  .hamburger span{ width:22px; height:2px; background:#222; display:block; }
+  .rule-top{ border:none; border-top:3px solid var(--rule); max-width:1240px; margin:0 auto; }
+  .drawer{ position:fixed; top:0; left:-300px; width:280px; height:100vh; background:#fff; z-index:200; box-shadow:2px 0 14px rgba(0,0,0,.15); transition:left .28s ease; padding:74px 26px 26px; font-family:Arial, Helvetica, sans-serif; }
+  .drawer.open{ left:0; }
+  .drawer a{ display:block; font-size:.82rem; letter-spacing:1.2px; text-transform:uppercase; padding:14px 0; border-bottom:1px solid var(--hair); }
+  .overlay{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:150; }
+  .overlay.open{ display:block; }
+  .drawer-close{ position:absolute; top:20px; right:20px; font-size:1.4rem; background:none; border:none; cursor:pointer; }
+  .crumb{ font-family:Arial,Helvetica,sans-serif; max-width:760px; margin:0 auto; padding:20px 28px 0; font-size:.6rem; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--mute); }
+  .crumb a:hover{ color:var(--accent); } .crumb .sep{ color:var(--hair); margin:0 8px; }
+  .wrap{ max-width:760px; margin:0 auto; padding:8px 28px 56px; }
+  .hero{ margin:0 0 4px; line-height:0; }
+  .hero img{ width:100%; aspect-ratio:2/1; object-fit:cover; height:auto; display:block; }
+  .hero figcaption{ font-family:Arial,Helvetica,sans-serif; display:flex; justify-content:space-between; gap:14px; line-height:1.4; margin-top:9px; font-size:.74rem; color:#8a8f98; }
+  .hero figcaption .credit{ text-transform:uppercase; letter-spacing:.6px; font-size:.62rem; color:#b0b4ba; white-space:nowrap; }
+  .kicker{ font-family:Arial,Helvetica,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--accent); }
+  h1.title{ font-family:Arial,Helvetica,sans-serif; font-weight:800; font-size:2.9rem; line-height:1.05; letter-spacing:-.018em; margin:10px 0 0; color:var(--ink); }
+  .standfirst{ font-size:1.32rem; line-height:1.45; color:#3a3a3a; margin-top:14px; font-weight:400; }
+  .dateline{ font-family:Arial,Helvetica,sans-serif; font-size:.64rem; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--mute); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); padding:10px 0; margin:22px 0 6px; display:flex; gap:18px; flex-wrap:wrap; }
+  .dateline .red{ color:var(--accent); }
+  .lead{ margin-top:20px; }
+  .lead p, .body p{ font-size:1.08rem; margin-top:1rem; }
+  .lead p:first-of-type::first-letter{ float:left; font-family:Arial,Helvetica,sans-serif; font-weight:800; color:var(--navy); font-size:3.6rem; line-height:.82; padding:6px 10px 0 0; }
+  .body ul,.body ol{ margin:.7rem 0 .2rem 1.2rem; } .body li{ font-size:1.04rem; margin-top:.45rem; }
+  .body code{ font-family:"Consolas",monospace; font-size:.92em; background:#f2f5f8; padding:1px 5px; border-radius:3px; }
+  .post-links{ margin:34px 0 6px; padding-top:18px; border-top:2px solid var(--accent); display:flex; gap:24px; flex-wrap:wrap; }
+  .post-links a{ font-family:Arial,Helvetica,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--accent); }
+  .post-links a:hover{ color:var(--accent-link); }
+  .hashtags{ font-family:Arial,Helvetica,sans-serif; font-size:.82rem; color:var(--mute); margin-top:18px; }
+  footer.site{ font-family:Arial,Helvetica,sans-serif; background:#222; max-width:1240px; margin:34px auto 0; padding:24px 28px; font-size:.8rem; letter-spacing:.5px; color:#fff; text-align:center; }
+  @media (max-width:900px){ .mast-nav{ display:none; } .hamburger{ display:flex; } .masthead{ padding:12px 16px; } .logo{ font-size:.72rem; letter-spacing:1.5px; padding:6px 8px; } }
+  @media (max-width:680px){ h1.title{ font-size:2.1rem; } .standfirst{ font-size:1.15rem; } .wrap{ padding:8px 18px 40px; } }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  <a href="https://lyven81.github.io/#cases">Case Studies</a>
+  <a href="https://lyven81.github.io/#ai">AI Projects</a>
+  <a href="https://lyven81.github.io/blog/">Blog</a>
+  <a href="https://lyven81.github.io/#stack">Stack</a>
+  <a href="https://lyven81.github.io/#about">About</a>
+  <a href="https://lyven81.github.io/#connect">Connect</a>
+</nav>
+
+<header class="site-header">
+  <div class="masthead">
+    <div class="mast-left">
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <a class="logo" href="https://lyven81.github.io/">LEE YIH VEN</a>
+      <nav class="mast-nav">
+        <a href="https://lyven81.github.io/#cases">Case Studies</a>
+        <a href="https://lyven81.github.io/#ai">AI Projects</a>
+        <a href="https://lyven81.github.io/blog/">Blog</a>
+        <a href="https://lyven81.github.io/#stack">Stack</a>
+        <a href="https://lyven81.github.io/#about">About</a>
+        <a href="https://lyven81.github.io/#connect">Connect</a>
+      </nav>
+    </div>
+  </div>
+  <hr class="rule-top">
+</header>
+
+<div class="crumb">
+  <a href="https://lyven81.github.io/blog/">Blog</a>
+  <span class="sep">/</span><span>Case Study</span>
+  <span class="sep">/</span><span>The Late Morning Rush</span>
+</div>
+
+<div class="wrap">
+
+  <figure class="hero">
+    <img src="https://raw.githubusercontent.com/lyven81/data-analyst-portfolio/main/images/kopitiam-busiest-hours/cover%20image.jpeg" alt="The Late Morning Rush">
+    <figcaption><span></span><span class="credit">Lee Yih Ven</span></figcaption>
+  </figure>
+
+  <div class="kicker">Demand timing &amp; staffing</div>
+  <h1 class="title">The Late Morning Rush</h1>
+  <p class="standfirst">Weekends and the 11am hour carry the sales.</p>
+  <div class="dateline"><span class="red">Lee Yih Ven</span><span>Case Study</span></div>
+
+  <div class="lead body">
+    <p>A kopitiam's week is not evenly spread, and neither is its day. Eleven months of the shop's own timestamped orders, 2,421 of them from July 2019 to June 2020, show demand concentrating in two places at once.</p>
+    <p>Most owners staff to a flat schedule and assume traffic drifts in steadily. This shop's data says otherwise, and the mismatch costs money at both ends: too few hands at the rush means slow service and walkouts, too many in the quiet hours means paying people to wait.</p>
+    <p>Business tilts hard to the weekend. Sunday averages about 13 orders a day and Saturday about 11, against 8 to 9 on a normal weekday. Put the two together and the weekend runs 41% busier per day than the weekday, 12.0 orders against 8.5.</p>
+    <p>Inside any day the traffic spikes rather than spreads. The 11am hour alone holds 706 orders across the period, close to a third of everything sold, sitting right at the start of the recorded 11am to 11pm trading window. Demand peaks in late morning, then eases through the afternoon and evening.</p>
+    <p>One row breaks the pattern for the opposite reason. Tuesday shows just 3 orders in 11 months, so the shop effectively rests on Tuesdays, and the week is better read as six days, not seven.</p>
+    <p>The pattern that keeps showing up is concentration. The week is won on Saturday and Sunday, and the day is won in one late-morning hour, so effort spread evenly is effort wasted. Busyness here is measured by order count, not ringgit, because the <code>order-total</code> column was unreliable and no per-item prices exist.</p>
+    <p>The recommendation is plain: staff and stock heaviest for the weekend and the 11am rush, run lean through the afternoon lull, and plan the week around a closed Tuesday. None of this needs more budget, only pointing the hands and the prep at the hours that actually carry the shop.</p>
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/data-analyst-portfolio/case-studies/kopitiam-busiest-hours.html">Full report &rarr;</a>
+  </div>
+
+  <div class="hashtags">#DemandPlanning #DataAnalytics #FnB</div>
+
+</div>
+
+<footer class="site">&copy; 2026 Lee Yih Ven</footer>
+
+<script>
+  const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay');
+  const openMenu=()=>{ drawer.classList.add('open'); overlay.classList.add('open'); };
+  const closeMenu=()=>{ drawer.classList.remove('open'); overlay.classList.remove('open'); };
+  document.getElementById('hamburger').addEventListener('click', openMenu);
+  document.getElementById('drawerClose').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); }});
+</script>
+</body>
+</html>
