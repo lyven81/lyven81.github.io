@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'fire-claim-examiner', c:AI_IMG+'fire-claim-examiner/cover.jpeg', tag:'Industry Specialist Advisors', t:'Fire Claim Examiner', d:'Tells claims examiners which clause governs and what to pay'},
     {s:'catering-knowledge-assistant',c:AI_IMG+'catering-knowledge-assistant/cover.jpeg',tag:'Knowledge Chatbot',t:'Catering Knowledge Assistant',d:"Meal delivery assistant that shows every answer's source"},
 {s:'delivery-delay-predictor',c:AI_IMG+'delivery-delay-predictor/cover.jpeg',tag:'Predictive Operations',t:'Delivery Delay Predictor',d:'Predicts late e-commerce deliveries before orders ship'},
 {s:'courier-cs-quality-console',c:AI_IMG+'courier-cs-quality-console/cover.jpeg',tag:'CS Quality',t:'Courier CS Quality Console',d:'Measures and improves customer-service quality for courier teams'},
@@ -110,8 +111,7 @@ const AIS=[
 {s:'property-lead-tracker',c:AI_IMG+'property-lead-tracker/cover.jpeg',tag:'Lead Attribution',t:'Property Lead Tracker',d:'Shows which lead channel actually signs your tenants'},
 {s:'motor-claim-evaluator',c:AI_IMG+'motor-claim-evaluator/cover.jpeg',tag:'Fraud QC',t:'Motor Claim Triage and QC Evaluator',d:'Deterministic claim triage for insurers, scored on fraud'},
 {s:'borrower-risk-evaluator',c:AI_IMG+'borrower-risk-evaluator/cover.jpeg',tag:'Classifier',t:'Borrower Risk Evaluator',d:'Loan-default classifier that proves its own accuracy for lenders'},
-{s:'market-research-agent',c:AI_IMG+'market-research-agent/cover.jpeg',tag:'Location Intelligence',t:'Market Research Agent',d:'Location-intelligence agent for local shop owners'},
-{s:'bloom-house-concierge',c:AI_IMG+'bloom-house-concierge/cover.jpeg',tag:'Governed Agent',t:'Lucy, Bloom House Concierge',d:'Florist concierge that recommends, escalates, or politely declines'}
+{s:'market-research-agent',c:AI_IMG+'market-research-agent/cover.jpeg',tag:'Location Intelligence',t:'Market Research Agent',d:'Location-intelligence agent for local shop owners'}
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
