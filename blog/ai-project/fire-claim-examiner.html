@@ -103,21 +103,23 @@
   <div class="dateline"><span class="red">Lee Yih Ven</span><span>AI Project</span></div>
 
   <div class="lead body">
-<p>A tool for a claims examiner at a Malaysian general insurer. It reads a lodged fire claim against the policy wording and returns three things: whether the policy responds, which clause governs, and what to pay.</p>
+<p>Fire Claim Examiner reads a lodged fire insurance claim against the policy wording and returns two things: the clause that governs it, and the amount to pay.</p>
 
-    <p>The usual build here is a chatbot over the policy PDF. That answers what the policy says and stops there. The questions that cost money are the ones after that.</p>
+    <p>A claims examiner settles those two questions on every file. The policy runs 61 pages, the customer's schedule lists the endorsements they bought, and the answer depends on how the two fit together. Doing that by hand, with thirty files open, is where the working day goes.</p>
 
-    <p>An insurance policy contradicts itself on purpose. An endorsement exists to displace the clause it is written against, so an exclusion and the extension that overrides it are <strong>both</strong> maximally relevant to the same question. Similarity ranking returns them side by side with no notion that one governs the other. Retrieval runs dense vector search over a <strong>Qdrant</strong> collection with a local <strong>cross-encoder</strong> rescoring the candidates, and then a precedence stage reorders by legal authority. An endorsement that is not on the schedule is withdrawn from that tier, because it cannot displace anything it was never bought to displace.</p>
+    <p>The policy is indexed as 116 clause-level passages, each carrying its authority, its peril and its excess formula. Retrieval runs dense vector search over a <strong>Qdrant</strong> collection, a local <strong>cross-encoder</strong> rescores the candidates, and a precedence stage then orders them by authority: an endorsement on the customer's schedule takes priority over the base clause it varies, and one they did not buy does not.</p>
 
-    <p>Six claims test it and two are paid. One holds exactly the right endorsement and still fails: the shop lot had been empty for 48 days, and that endorsement excludes loss while the premises are untenanted. Another is a textbook flood with the flood endorsement in force, and it fails because the written claim arrived on day 31 against a 15 day requirement.</p>
+    <p>The governing clause comes back quoted, alongside every other clause the determination touched. Six checks run in a fixed order and the tool reports the first one that stops the claim, so an examiner sees where a file failed rather than only what the verdict was.</p>
 
-    <p>Order is the answer. Every claim runs the same six gates and the determination is always the first one that fails. Check the peril before the period and a well evidenced fire that expired eighteen months earlier gets approved.</p>
+    <p>The amount comes back line by line. On a bakery fire it allowed the oven, the proofer and the shelving, excluded the dough mixer where the electrical fault began, and applied underinsurance to one schedule item and not the other two. Claimed RM 168,200, payable RM 130,700, with the clause shown against every line and the arithmetic printed underneath.</p>
 
-    <p>The figure is computed in code with no model anywhere in its path. Excesses resolve to the lesser of two amounts, two can run in parallel in one claim, and underinsurance is applied per schedule item after exclusions rather than before. Reversing those last two changes one payable by RM 4,625.</p>
+    <p>The cases that make the build worth having are the ones that look payable. A burst pipe claim holds exactly the right water damage endorsement and still fails, because the shop lot had stood empty for 48 days and that endorsement excludes loss while the premises are untenanted. A flood claim with the flood endorsement in force fails because the written claim arrived on day 31, against a 15 day requirement.</p>
 
-    <p>It is scored against an answer key the deciding code never opens: six determinations correct out of six, and both payable figures exact to the ringgit. The two axes that are still unmeasured are named on the page rather than left out.</p>
+    <p>Every determination cites the wording it rests on and every figure carries its working, so the file note can be written straight from the output.</p>
 
     <p class="tags">#RAG #VectorSearch #AIEngineering</p>
+
+
 
 
   </div>
