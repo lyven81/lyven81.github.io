@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lee Yih Ven · Data Analyst &amp; AI Builder · Malaysia</title>
-<meta name="description" content="Lee Yih Ven, a freelance data analyst and AI builder in Malaysia. Analytics case studies, dashboards, and AI projects, every project public." />
+<title>Lee Yih Ven · Applied AI Systems | Business Workflow Automation · Malaysia</title>
+<meta name="description" content="Lee Yih Ven builds practical AI applications that help businesses automate workflows, process information, and make better use of their operational data. Claude Certified Architect, Foundations. Kuala Lumpur, Malaysia." />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -18,17 +18,17 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Lee Yih Ven" />
-<meta property="og:title" content="Lee Yih Ven — Data Analyst &amp; AI Builder · Malaysia" />
-<meta property="og:description" content="Freelance data analyst and AI builder in Malaysia. Analytics case studies, dashboards, and AI projects, every project public." />
+<meta property="og:title" content="Lee Yih Ven · Applied AI Systems | Business Workflow Automation" />
+<meta property="og:description" content="I build practical AI applications that help businesses automate workflows, process information, and make better use of their operational data." />
 <meta property="og:url" content="https://lyven81.github.io/" />
-<meta property="og:image" content="https://lyven81.github.io/headshot.png" />
-<meta property="og:image:alt" content="Lee Yih Ven, data analyst and AI builder" />
+<meta property="og:image" content="https://lyven81.github.io/headshot.jpg" />
+<meta property="og:image:alt" content="Lee Yih Ven, Applied AI Systems and Business Workflow Automation" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Lee Yih Ven — Data Analyst &amp; AI Builder · Malaysia" />
-<meta name="twitter:description" content="Freelance data analyst and AI builder in Malaysia. Analytics case studies, dashboards, and AI projects." />
-<meta name="twitter:image" content="https://lyven81.github.io/headshot.png" />
+<meta name="twitter:title" content="Lee Yih Ven · Applied AI Systems | Business Workflow Automation" />
+<meta name="twitter:description" content="I build practical AI applications that help businesses automate workflows, process information, and make better use of their operational data." />
+<meta name="twitter:image" content="https://lyven81.github.io/headshot.jpg" />
 
 <!-- Structured data: Person (name card) -->
 <script type="application/ld+json">
@@ -37,13 +37,14 @@
   "@type": "Person",
   "name": "Lee Yih Ven",
   "url": "https://lyven81.github.io/",
-  "image": "https://lyven81.github.io/headshot.png",
-  "jobTitle": "Data Analyst & AI Builder",
+  "image": "https://lyven81.github.io/headshot.jpg",
+  "jobTitle": "Applied AI Systems | Business Workflow Automation",
   "nationality": "Malaysian",
   "worksFor": { "@type": "Organization", "name": "Pau Analytics", "url": "https://pauanalytics.com" },
-  "knowsAbout": ["Data Analysis","Data Visualization","Dashboards","Business Intelligence","Machine Learning","AI Agents","Python","SQL"],
+  "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "Claude Certified Architect, Foundations", "recognizedBy": { "@type": "Organization", "name": "Anthropic" }, "url": "https://www.credly.com/badges/79fe43c8-5bd0-4255-a0e4-f5af07518191" },
+  "knowsAbout": ["AI Applications","Workflow Automation","AI Agents","Document Processing","Retrieval-Augmented Generation","Model Context Protocol","Data Analysis","Python","SQL"],
   "sameAs": [
-    "https://www.linkedin.com/in/lee-yih-ven-78014330/",
+    "https://www.linkedin.com/in/lee-yih-ven/",
     "https://github.com/lyven81",
     "https://lyven81.github.io/data-analyst-portfolio/",
     "https://lyven81.github.io/ai-project/",
@@ -117,13 +118,14 @@
   .method-tile li{ font-family:Arial, Helvetica, sans-serif; font-size:.78rem; color:var(--gray); padding:4px 0; }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{ display:grid; grid-template-columns:220px 1fr; gap:32px; margin-top:6px; align-items:center; border-top:3px solid var(--rule); padding-top:20px; }
+  .about-grid{ display:grid; grid-template-columns:220px minmax(0,515px); gap:32px; margin-top:6px; align-items:center; border-top:3px solid var(--rule); padding-top:20px; }
   .about-grid img{ width:100%; aspect-ratio:1/1; object-fit:cover; object-position:top center; }
   .about-text{ text-align:left; }
   .about-greet{ font-family:Arial, Helvetica, sans-serif; font-size:.9rem; font-weight:500; color:var(--gray); margin-bottom:6px; }
   .about-text h3{ font-size:1.7rem; font-weight:900; line-height:1.15; margin-bottom:10px; }
-  .about-text .about-sub{ margin-bottom:10px; max-width:50ch; }
-  .about-text p{ font-size:.96rem; margin-bottom:0; max-width:60ch; }
+  /* Text box: no border, ends under CONNECT in the menu (515px), every full line the same length (justified) */
+  .about-text p{ font-size:.96rem; margin-bottom:0; max-width:none; text-align:justify; text-justify:inter-word; hyphens:auto; }
+  .about-text .about-sub{ margin-bottom:10px; }
 
   /* ---------- CONNECT ---------- */
   .connect-grid{ display:grid; grid-template-columns:repeat(2,1fr); border-top:3px solid var(--rule); margin-top:6px; }
@@ -158,17 +160,18 @@
 </head>
 <body>
 
-<h1 class="visually-hidden">Lee Yih Ven — Data Analyst and AI Builder in Malaysia</h1>
+<h1 class="visually-hidden">Lee Yih Ven, Applied AI Systems and Business Workflow Automation, Malaysia</h1>
 
 <!-- Mobile drawer -->
 <div class="overlay" id="overlay"></div>
 <nav class="drawer" id="drawer">
   <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  <a href="#about">About</a>
+  <a href="#how">How I Work</a>
   <a href="#cases">Case Studies</a>
   <a href="#ai">AI Projects</a>
   <a href="https://lyven81.github.io/blog/">Blog</a>
   <a href="#stack">Stack</a>
-  <a href="#about">About</a>
   <a href="#connect">Connect</a>
 </nav>
 
@@ -178,11 +181,12 @@
       <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
       <a class="logo" href="/">LEE YIH VEN</a>
       <nav class="mast-nav">
+        <a href="#about">About</a>
+        <a href="#how">How I Work</a>
         <a href="#cases">Case Studies</a>
         <a href="#ai">AI Projects</a>
         <a href="https://lyven81.github.io/blog/">Blog</a>
         <a href="#stack">Stack</a>
-        <a href="#about">About</a>
         <a href="#connect">Connect</a>
       </nav>
     </div>
@@ -194,11 +198,36 @@
 <section class="block" id="about">
   <span class="tab">About</span>
   <div class="about-grid">
-    <img src="headshot.png" alt="Lee Yih Ven, data analyst and AI builder in Malaysia" width="220" height="220">
+    <img src="headshot.jpg" alt="Lee Yih Ven, Applied AI Systems and Business Workflow Automation, Kuala Lumpur" width="220" height="220">
     <div class="about-text">
       <p class="about-greet">Hello, I'm Lee.</p>
-      <h3>I Like Solving Puzzles</h3>
-      <p>Business questions, data, AI, they're all puzzles worth solving. I began my career investigating insurance claims before spending seven years running my own online business. Managing pricing, advertising, inventory, and reporting gave me a practical understanding of how businesses work.</p>
+      <h3>Every Business Has Work That Could Be Easier</h3>
+      <p class="about-sub">Answering the same customer questions, checking documents, and preparing reports take time away from more important work. These are everyday problems that practical AI applications can help solve.</p>
+      <p class="about-sub">I build AI tools that handle routine enquiries, process information, and support business decisions. The goal is not to replace people, but to make their work easier and give them more time for tasks that need their attention.</p>
+      <p>With experience in insurance claims, e-commerce, and AI development, I understand both business processes and technology. Let's explore how AI can help your team work better.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW I WORK ===== -->
+<section class="block" id="how">
+  <span class="tab">How I Work</span>
+  <div class="method-grid">
+    <div class="method-tile">
+      <h4>1. Understand the process</h4>
+      <ul><li>The problem and who it costs</li><li>The scope of a first version</li><li>What the AI may and may not do</li><li>How success will be measured</li></ul>
+    </div>
+    <div class="method-tile">
+      <h4>2. Design the workflow</h4>
+      <ul><li>Which tasks the AI handles</li><li>Which follow fixed rules</li><li>When a person takes over</li><li>Which data the system may read</li></ul>
+    </div>
+    <div class="method-tile">
+      <h4>3. Test before trust</h4>
+      <ul><li>Valid requests</li><li>Unauthorised access</li><li>Outdated information</li><li>System failures</li></ul>
+    </div>
+    <div class="method-tile">
+      <h4>4. Prepare for launch</h4>
+      <ul><li>Security review</li><li>A named owner for monitoring</li><li>A rollback plan</li><li>Approval before real users</li></ul>
     </div>
   </div>
 </section>
@@ -252,9 +281,9 @@
   <span class="tab">Connect</span>
   <div class="connect-grid">
     <a class="connect-link" href="mailto:yven81@gmail.com"><b>Email</b><span>yven81@gmail.com &rarr;</span></a>
-    <a class="connect-link" href="https://www.linkedin.com/in/lee-yih-ven-78014330/"><b>LinkedIn</b><span>lee-yih-ven &rarr;</span></a>
-    <a class="connect-link" href="https://github.com/lyven81"><b>GitHub</b><span>lyven81 &rarr;</span></a>
-    <a class="connect-link" href="https://www.pauanalytics.com/index.html"><b>Pau Analytics</b><span>pauanalytics.com &rarr;</span></a>
+    <a class="connect-link" href="https://www.linkedin.com/in/lee-yih-ven/"><b>LinkedIn</b><span>lee-yih-ven &rarr;</span></a>
+    <a class="connect-link" href="https://wa.me/60149207099" target="_blank" rel="noopener"><b>WhatsApp</b><span>Lee Yih Ven &rarr;</span></a>
+    <a class="connect-link" href="cv.html" target="_blank"><b>CV</b><span>View my CV &rarr;</span></a>
   </div>
 </section>
 
