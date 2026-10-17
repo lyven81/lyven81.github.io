@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'pak-razif-the-gardener', c:'https://lyven81.github.io/ai-projects/images/pak-razif-the-gardener/cover.jpeg', tag:'Customer Service', t:'Pak Razif The Gardener', d:"A gardener's own assistant that answers enquiries and books free site visits while he works, with prices and decisions kept for him."},
     {s:'badminton-booking-agent', c:'https://lyven81.github.io/ai-projects/images/badminton-booking-agent/cover.jpeg', tag:'Customer Service', t:'Badminton Court Booking Agent', d:"A court booking assistant that answers only from the centre's policies, with staff in control of payments"},
     {s:'wee-auto-car-care', c:'https://lyven81.github.io/ai-projects/images/wee-auto-car-care/cover.jpeg', tag:'Customer Service', t:'Wee Auto Car Care', d:'A customer service assistant for a car workshop, with staff in control'},
     {s:'hook-or-prompt', c:AI_IMG+'hook-or-prompt/cover.jpeg', tag:'Agentic Commerce', t:'Hook or Prompt', d:'How code guarantees a rule a prompt only guides'},
@@ -111,7 +112,6 @@ const AIS=[
     {s:'catering-knowledge-assistant',c:AI_IMG+'catering-knowledge-assistant/cover.jpeg',tag:'Knowledge Chatbot',t:'Catering Knowledge Assistant',d:"Meal delivery assistant that shows every answer's source"},
     {s:'delivery-delay-predictor',c:AI_IMG+'delivery-delay-predictor/cover.jpeg',tag:'Predictive Operations',t:'Delivery Delay Predictor',d:'Predicts late e-commerce deliveries before orders ship'},
     {s:'courier-cs-quality-console',c:AI_IMG+'courier-cs-quality-console/cover.jpeg',tag:'CS Quality',t:'Courier CS Quality Console',d:'Measures and improves customer-service quality for courier teams'},
-    {s:'seasonal-pricing-console',c:AI_IMG+'seasonal-pricing-console/cover.jpeg',tag:'Governed Pricing',t:'Seasonal Pricing Console',d:'Shows rental hosts the profit-max nightly rate by season'},
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
