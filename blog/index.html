@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'chinese-translation-quality-check', c:'https://lyven81.github.io/ai-projects/images/chinese-translation-quality-check/cover.jpeg', tag:'Document Processing', t:'Chinese Translation Quality Check', d:'A translation review where Claude specialists check the Chinese against the English, and an editor decides every change.'},
     {s:'pak-razif-the-gardener', c:'https://lyven81.github.io/ai-projects/images/pak-razif-the-gardener/cover.jpeg', tag:'Customer Service', t:'Pak Razif The Gardener', d:"A gardener's own assistant that answers enquiries and books free site visits while he works, with prices and decisions kept for him."},
     {s:'badminton-booking-agent', c:'https://lyven81.github.io/ai-projects/images/badminton-booking-agent/cover.jpeg', tag:'Customer Service', t:'Badminton Court Booking Agent', d:"A court booking assistant that answers only from the centre's policies, with staff in control of payments"},
     {s:'wee-auto-car-care', c:'https://lyven81.github.io/ai-projects/images/wee-auto-car-care/cover.jpeg', tag:'Customer Service', t:'Wee Auto Car Care', d:'A customer service assistant for a car workshop, with staff in control'},
@@ -111,7 +112,6 @@ const AIS=[
     {s:'fire-claim-examiner', c:AI_IMG+'fire-claim-examiner/cover.jpeg', tag:'Industry Specialist Advisors', t:'Fire Claim Examiner', d:'Tells claims examiners which clause governs and what to pay'},
     {s:'catering-knowledge-assistant',c:AI_IMG+'catering-knowledge-assistant/cover.jpeg',tag:'Knowledge Chatbot',t:'Catering Knowledge Assistant',d:"Meal delivery assistant that shows every answer's source"},
     {s:'delivery-delay-predictor',c:AI_IMG+'delivery-delay-predictor/cover.jpeg',tag:'Predictive Operations',t:'Delivery Delay Predictor',d:'Predicts late e-commerce deliveries before orders ship'},
-    {s:'courier-cs-quality-console',c:AI_IMG+'courier-cs-quality-console/cover.jpeg',tag:'CS Quality',t:'Courier CS Quality Console',d:'Measures and improves customer-service quality for courier teams'},
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
