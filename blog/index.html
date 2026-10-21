@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'fd-food-and-drink-distributors', c:'https://lyven81.github.io/ai-projects/images/fd-food-and-drink-distributors/cover.jpeg', tag:'Business Workflow', t:'FD Food and Drink Distributors', d:'A staff assistant for a food and drink wholesaler where Claude chooses the tool and two shared hooks apply the written policy, naming the person on every decision that is theirs.'},
     {s:'car-rental-booking-agent', c:'https://lyven81.github.io/ai-projects/images/car-rental-booking-agent/cover.jpeg', tag:'Customer Service', t:'Kereta Sewa Jalan-jalan Car Rental Agent', d:'A car rental agent that prices, books and records deposits from the written policy, with confirmations, delivery charges and refunds kept for staff.'},
     {s:'chinese-translation-quality-check', c:'https://lyven81.github.io/ai-projects/images/chinese-translation-quality-check/cover.jpeg', tag:'Document Processing', t:'Chinese Translation Quality Check', d:'A translation review where Claude specialists check the Chinese against the English, and an editor decides every change.'},
     {s:'pak-razif-the-gardener', c:'https://lyven81.github.io/ai-projects/images/pak-razif-the-gardener/cover.jpeg', tag:'Customer Service', t:'Pak Razif The Gardener', d:"A gardener's own assistant that answers enquiries and books free site visits while he works, with prices and decisions kept for him."},
@@ -111,7 +112,6 @@ const AIS=[
     {s:'kuala-sepetang-tour-boat', c:AI_IMG+'kuala-sepetang-tour-boat/cover.jpeg', tag:'Industry Specialist Advisors', t:'Kuala Sepetang Tour Boat', d:'Weather-driven departure planner for a one-boat tour operator'},
     {s:'evaluate-ai-retail-customer-agent', c:AI_IMG+'evaluate-ai-retail-customer-agent/cover.jpeg', tag:'AI Evaluation', t:'Evaluate AI Retail Customer Agent', d:'Measuring and improving how retail AI serves customers'},
     {s:'fire-claim-examiner', c:AI_IMG+'fire-claim-examiner/cover.jpeg', tag:'Industry Specialist Advisors', t:'Fire Claim Examiner', d:'Tells claims examiners which clause governs and what to pay'},
-    {s:'catering-knowledge-assistant',c:AI_IMG+'catering-knowledge-assistant/cover.jpeg',tag:'Knowledge Chatbot',t:'Catering Knowledge Assistant',d:"Meal delivery assistant that shows every answer's source"},
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
