@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'happy-mart-customer-desk', c:'https://lyven81.github.io/ai-projects/images/happy-mart-customer-desk/cover.jpeg', tag:'Triage and Routing', t:'Happy Mart Customer Desk', d:'A customer service desk for an online electronics store where a router sends each question to the department team that owns it, and code checks every reply before the customer sees it.'},
     {s:'fd-food-and-drink-distributors', c:'https://lyven81.github.io/ai-projects/images/fd-food-and-drink-distributors/cover.jpeg', tag:'Business Workflow', t:'FD Food and Drink Distributors', d:'A staff assistant for a food and drink wholesaler where Claude chooses the tool and two shared hooks apply the written policy, naming the person on every decision that is theirs.'},
     {s:'car-rental-booking-agent', c:'https://lyven81.github.io/ai-projects/images/car-rental-booking-agent/cover.jpeg', tag:'Customer Service', t:'Kereta Sewa Jalan-jalan Car Rental Agent', d:'A car rental agent that prices, books and records deposits from the written policy, with confirmations, delivery charges and refunds kept for staff.'},
     {s:'chinese-translation-quality-check', c:'https://lyven81.github.io/ai-projects/images/chinese-translation-quality-check/cover.jpeg', tag:'Document Processing', t:'Chinese Translation Quality Check', d:'A translation review where Claude specialists check the Chinese against the English, and an editor decides every change.'},
@@ -111,7 +112,6 @@ const AIS=[
     {s:'hook-or-prompt', c:AI_IMG+'hook-or-prompt/cover.jpeg', tag:'Agentic Commerce', t:'Hook or Prompt', d:'How code guarantees a rule a prompt only guides'},
     {s:'kuala-sepetang-tour-boat', c:AI_IMG+'kuala-sepetang-tour-boat/cover.jpeg', tag:'Industry Specialist Advisors', t:'Kuala Sepetang Tour Boat', d:'Weather-driven departure planner for a one-boat tour operator'},
     {s:'evaluate-ai-retail-customer-agent', c:AI_IMG+'evaluate-ai-retail-customer-agent/cover.jpeg', tag:'AI Evaluation', t:'Evaluate AI Retail Customer Agent', d:'Measuring and improving how retail AI serves customers'},
-    {s:'fire-claim-examiner', c:AI_IMG+'fire-claim-examiner/cover.jpeg', tag:'Industry Specialist Advisors', t:'Fire Claim Examiner', d:'Tells claims examiners which clause governs and what to pay'},
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');

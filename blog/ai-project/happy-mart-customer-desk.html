@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Mart Customer Desk · Lee Yih Ven</title>
+<meta name="description" content="A customer service desk for an online electronics store where a router sends each question to the department team that owns it, and code checks every reply before the customer sees it." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{ --ink:#222; --paper:#fff; --rule:#222; --hair:#dddddd; --gray:#555; --accent-link:#007BFF; --navy:#002D55; --accent:#004B87; --mute:#6b7280; }
+  body{ background:var(--paper); color:var(--ink); font-family:"Source Serif 4",Georgia,"Times New Roman",serif; line-height:1.65; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  .site-header{ position:sticky; top:0; z-index:100; background:var(--paper); }
+  .masthead{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1240px; margin:0 auto; gap:18px; font-family:Arial, Helvetica, sans-serif; }
+  .mast-left{ display:flex; align-items:center; gap:20px; }
+  .logo{ background:#222; color:#fff; font-weight:700; letter-spacing:3px; font-size:.95rem; padding:8px 12px; white-space:nowrap; }
+  .mast-nav{ display:flex; gap:20px; font-size:.72rem; letter-spacing:1.4px; text-transform:uppercase; }
+  .mast-nav a:hover{ color:var(--accent-link); }
+  .hamburger{ display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; padding:6px; }
+  .hamburger span{ width:22px; height:2px; background:#222; display:block; }
+  .rule-top{ border:none; border-top:3px solid var(--rule); max-width:1240px; margin:0 auto; }
+  .drawer{ position:fixed; top:0; left:-300px; width:280px; height:100vh; background:#fff; z-index:200; box-shadow:2px 0 14px rgba(0,0,0,.15); transition:left .28s ease; padding:74px 26px 26px; font-family:Arial, Helvetica, sans-serif; }
+  .drawer.open{ left:0; }
+  .drawer a{ display:block; font-size:.82rem; letter-spacing:1.2px; text-transform:uppercase; padding:14px 0; border-bottom:1px solid var(--hair); }
+  .overlay{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:150; }
+  .overlay.open{ display:block; }
+  .drawer-close{ position:absolute; top:20px; right:20px; font-size:1.4rem; background:none; border:none; cursor:pointer; }
+  .crumb{ font-family:Arial,Helvetica,sans-serif; max-width:760px; margin:0 auto; padding:20px 28px 0; font-size:.6rem; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--mute); }
+  .crumb a:hover{ color:var(--accent); } .crumb .sep{ color:var(--hair); margin:0 8px; }
+  .wrap{ max-width:760px; margin:0 auto; padding:8px 28px 56px; }
+  .hero{ margin:0 0 4px; line-height:0; }
+  .hero img{ width:100%; aspect-ratio:2/1; object-fit:cover; height:auto; display:block; }
+  .hero figcaption{ font-family:Arial,Helvetica,sans-serif; display:flex; justify-content:space-between; gap:14px; line-height:1.4; margin-top:9px; font-size:.74rem; color:#8a8f98; }
+  .hero figcaption .credit{ text-transform:uppercase; letter-spacing:.6px; font-size:.62rem; color:#b0b4ba; white-space:nowrap; }
+  .kicker{ font-family:Arial,Helvetica,sans-serif; font-size:.72rem; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:var(--accent); }
+  h1.title{ font-family:Arial,Helvetica,sans-serif; font-weight:800; font-size:2.9rem; line-height:1.05; letter-spacing:-.018em; margin:10px 0 0; color:var(--ink); }
+  .standfirst{ font-size:1.32rem; line-height:1.45; color:#3a3a3a; margin-top:14px; font-weight:400; }
+  .dateline{ font-family:Arial,Helvetica,sans-serif; font-size:.64rem; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--mute); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); padding:10px 0; margin:22px 0 6px; display:flex; gap:18px; flex-wrap:wrap; }
+  .dateline .red{ color:var(--accent); }
+  .lead{ margin-top:20px; }
+  .lead p, .body p{ font-size:1.08rem; margin-top:1rem; }
+  .lead p:first-of-type::first-letter{ float:left; font-family:Arial,Helvetica,sans-serif; font-weight:800; color:var(--navy); font-size:3.6rem; line-height:.82; padding:6px 10px 0 0; }
+  .body code{ font-family:"Consolas",monospace; font-size:.92em; background:#f2f5f8; padding:1px 5px; border-radius:3px; }
+  .post-links{ margin:34px 0 6px; padding-top:18px; border-top:2px solid var(--accent); display:flex; gap:24px; flex-wrap:wrap; }
+  .post-links a{ font-family:Arial,Helvetica,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--accent); }
+  .post-links a:hover{ color:var(--accent-link); }
+  .hashtags{ font-family:Arial,Helvetica,sans-serif; font-size:.82rem; color:var(--mute); margin-top:18px; }
+  footer.site{ font-family:Arial,Helvetica,sans-serif; background:#222; max-width:1240px; margin:34px auto 0; padding:24px 28px; font-size:.8rem; letter-spacing:.5px; color:#fff; text-align:center; }
+  @media (max-width:900px){ .mast-nav{ display:none; } .hamburger{ display:flex; } .masthead{ padding:12px 16px; } .logo{ font-size:.72rem; letter-spacing:1.5px; padding:6px 8px; } }
+  @media (max-width:680px){ h1.title{ font-size:2.1rem; } .standfirst{ font-size:1.15rem; } .wrap{ padding:8px 18px 40px; } }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<nav class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+  <a href="https://lyven81.github.io/#cases">Case Studies</a>
+  <a href="https://lyven81.github.io/#ai">AI Projects</a>
+  <a href="https://lyven81.github.io/blog/">Blog</a>
+  <a href="https://lyven81.github.io/#stack">Stack</a>
+  <a href="https://lyven81.github.io/#about">About</a>
+  <a href="https://lyven81.github.io/#connect">Connect</a>
+</nav>
+
+<header class="site-header">
+  <div class="masthead">
+    <div class="mast-left">
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <a class="logo" href="https://lyven81.github.io/">LEE YIH VEN</a>
+      <nav class="mast-nav">
+        <a href="https://lyven81.github.io/#cases">Case Studies</a>
+        <a href="https://lyven81.github.io/#ai">AI Projects</a>
+        <a href="https://lyven81.github.io/blog/">Blog</a>
+        <a href="https://lyven81.github.io/#stack">Stack</a>
+        <a href="https://lyven81.github.io/#about">About</a>
+        <a href="https://lyven81.github.io/#connect">Connect</a>
+      </nav>
+    </div>
+  </div>
+  <hr class="rule-top">
+</header>
+
+<div class="crumb">
+  <a href="https://lyven81.github.io/blog/">Blog</a>
+  <span class="sep">/</span><span>AI Project</span>
+  <span class="sep">/</span><span>Happy Mart Customer Desk</span>
+</div>
+
+<div class="wrap">
+
+  <figure class="hero">
+    <img src="https://lyven81.github.io/ai-projects/images/happy-mart-customer-desk/cover.jpeg" alt="Happy Mart Customer Desk">
+    <figcaption><span></span><span class="credit">Lee Yih Ven</span></figcaption>
+  </figure>
+
+  <div class="kicker">AI Project</div>
+  <h1 class="title">Happy Mart Customer Desk</h1>
+  <p class="standfirst">A customer service desk for an online electronics store where a router sends each question to the department team that owns it, and code checks every reply before the customer sees it.</p>
+  <div class="dateline"><span class="red">Lee Yih Ven</span><span>AI Project</span></div>
+
+  <div class="lead body">
+    <p>A customer service desk for Happy Mart, a fictional online electronics store in Shah Alam with 1,224 products and 2,597 orders over two months. A router sends each part of a customer's question to the department team that owns it, and code checks every reply before the customer sees it.</p>
+
+    <p>Customers ask where an order is, whether they can return it, when a refund comes and why they paid for delivery. Each answer belongs to a different department, and each has to come from the store's own rules and the customer's own order.</p>
+
+    <p>The desk runs on Claude through an MCP server with 13 resources (six department policies with 28 clauses, a router workbook, five role sheets, the contact list) and 17 tools:</p>
+
+    <ul>
+      <li><strong>Router (Sonnet 5.5):</strong> verifies the order ID and the last 4 phone digits, then asks only the teams the question needs.</li>
+      <li><strong>Five department teams:</strong> Fulfilment, Returns, Finance, Claims and Marketing, each a sub-agent with its own policy, its own tools and its own slice of the order.</li>
+      <li><strong>Writer (Haiku 5.5):</strong> turns the teams' answers into one reply, one paragraph per question.</li>
+      <li><strong>Two shared hooks and a pre-send check:</strong> identity, order access and every date window are checked in code, and each draft is read for amounts, dates, handovers and claims the policies never make.</li>
+    </ul>
+
+    <p>The interesting part is where the decisions sit. Arjun reports that the 27-inch monitor from HM-100110 arrived with a cracked screen. The claims team confirms it is 19 hours since delivery, inside the 48-hour window (QP1), and prepares damage report CL-0001 for Jessica Chan, the claims officer, with no request for photos.</p>
+
+    <p>Kumar asks why he paid delivery on an order of exactly RM50 on a campaign day. Code works out that free delivery starts above RM50 (MP3), so the RM5 fee applied, and the reply says so with the clause.</p>
+
+    <p>Staff keep every decision about money, returns and claims; the desk prepares each request for a named person. Every recorded test run replays on the two-phone demo.</p>
+
+    <p class="tags">#AIAgents #CustomerExperience #MCP</p>
+
+  </div>
+
+  <div class="post-links">
+    <a href="https://lyven81.github.io/ai-projects/projects/happy-mart-customer-desk/assistant.html">Live demo →</a>
+    <a href="https://github.com/lyven81/ai-projects/tree/main/projects/happy-mart-customer-desk">Source →</a>
+  </div>
+
+
+  <div class="hashtags">#AIAgents #CustomerExperience #MCP</div>
+
+</div>
+
+<footer class="site">&copy; 2026 Lee Yih Ven</footer>
+
+<script>
+  const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay');
+  const openMenu=()=>{ drawer.classList.add('open'); overlay.classList.add('open'); };
+  const closeMenu=()=>{ drawer.classList.remove('open'); overlay.classList.remove('open'); };
+  document.getElementById('hamburger').addEventListener('click', openMenu);
+  document.getElementById('drawerClose').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); }});
+</script>
+</body>
+</html>
