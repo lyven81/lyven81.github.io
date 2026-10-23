@@ -103,19 +103,22 @@
   <div class="dateline"><span class="red">Lee Yih Ven</span><span>AI Project</span></div>
 
   <div class="lead body">
-    <p>A staff desk for DF Auto Parts Distributors, an automotive spare parts distributor in Selangor where seven staff in Sales, Finance and Warehouse serve 120 workshops and parts shops. A salesperson starts each order, the manager who owns the decision receives it with the data to decide, and code or a named person carries it out.</p>
+    <p>An order approval assistant for DF Auto Parts Distributors, an automotive spare parts distributor in Selangor where seven staff in Sales, Finance and Warehouse work on the same orders for 120 workshops and parts shops. A discount, an order below the RM 300.00 minimum, an earlier delivery date or paying before dispatch needs a manager's decision. Without one place for it, staff chase approvals through calls and messages, managers decide without all the facts, and a decision can be remembered with no clear record.</p>
 
-    <p>A discount, an order below the RM 300.00 minimum, an earlier delivery date or paying before dispatch is a manager's decision. Farid Iskandar, sales manager, owns discounts and small orders; Azlan Yusof, warehouse manager, delivery dates; Nadia Zulkifli, finance manager, the prepaid route. Each request has to reach the right one with the facts attached, and the order waits until every decision is on record.</p>
+    <p>The assistant controls what happens after a request. Farid Iskandar, sales manager, owns discounts and small orders; Azlan Yusof, warehouse manager, delivery dates; Nadia Zulkifli, finance manager, the prepaid route. Each request reaches the right one with the facts attached, and the order waits until every decision is on record.</p>
 
-    <p>The desk runs on Claude Haiku 5.5 through an MCP server, with four policies, the Product Catalogue and the Customer Directory as resources, and seven tools. The AI only chooses which tool to call. Around it sit three layers of code:</p>
+    <p>It runs on Claude Haiku 5.5 through an MCP server, with four policies, the Product Catalogue and the Customer Directory as resources, and seven tools. The work is split four ways:</p>
 
     <ul>
-      <li><strong>PreToolUse hook:</strong> checks the staff member, prices, the 15% discount maximum, stock age, credit and duplicates, then turns the first rule a manager decides into an escalation to that manager.</li>
-      <li><strong>PostToolUse hook:</strong> applies policy to every result and flags an order total that does not match for reconciliation.</li>
-      <li><strong>Back end:</strong> records each approval against its request and places an order once, only when every approval is recorded.</li>
+      <li><strong>AI interprets:</strong> understands what the staff member asks and picks one of the seven tools. It approves nothing.</li>
+      <li><strong>Code checks and routes:</strong> a shared PreToolUse hook checks permissions, prices, the 15% discount maximum, stock age, credit and duplicates, then sends the first exception to the manager who owns it.</li>
+      <li><strong>Human decides:</strong> the manager approves or declines, and only the person a request is addressed to can decide it, once.</li>
+      <li><strong>Code executes:</strong> records the decision against the request, tells the requester, and places the order once, only when every approval is recorded and the salesperson has confirmed the summary.</li>
     </ul>
 
     <p>When Chloe Lim asks for 10% off 10 cartons of 5W-30 engine oil, nothing is placed, and the reply is one sentence written in code: "Sent to Farid Iskandar, sales manager." Farid's chat opens with the figures: RM 4,400.00 less RM 440.00, with RM 5,200.00 of credit available. Farid answers "Approved.", the approval is recorded for that order only, and Chloe is told the order can go ahead once the customer's terms are settled. When Daniel Wong tries to approve the same discount, the reply names who decides: "Only Farid Iskandar, sales manager, can approve a discount."</p>
+
+    <p>Routine work follows the rules on its own. When Farid declines a 12-filter order below the minimum with "Make it 17 filters to reach RM 300.", Chloe revises it to 17 filters at RM 306.00, which needs no approval, and it is placed once Chloe confirms the summary.</p>
 
     <p>The pattern that keeps showing up: the decision stays with the person who answers for it, and the system's work is getting the right facts to that person and keeping the record.</p>
 
