@@ -102,6 +102,7 @@ const CASES=[
  {s:'before-they-leave',c:CI+'before-they-leave/cover%20image.jpeg',tag:'Predictive Analysis',t:'Before They Leave',d:'Support calls and inactivity flag who will leave'},
 ];
 const AIS=[
+    {s:'polyclinic-sivakumar', c:'https://lyven81.github.io/ai-projects/images/polyclinic-sivakumar/cover.jpeg', tag:'Business Workflow', t:'Polyclinic Sivakumar Clinic Desk', d:'A clinic desk for a one-doctor GP clinic where the clinic assistant, the GP and the pharmacist each see only their own work, and code carries each visit from one person to the next.'},
     {s:'df-auto-parts-distributors', c:'https://lyven81.github.io/ai-projects/images/df-auto-parts-distributors/cover.jpeg', tag:'Business Workflow', t:'DF Auto Parts Distributors', d:'A staff desk for an automotive spare parts distributor where a salesperson starts the work, the manager who owns the decision receives it with the data to decide, and code or a named person carries it out.'},
     {s:'sang-kancil-specialist-clinic', c:'https://lyven81.github.io/ai-projects/images/sang-kancil-specialist-clinic/cover.jpeg', tag:'Business Workflow', t:'Sang Kancil Specialist Clinic', d:'A staff assistant for a paediatric clinic where Claude chooses the tool and shared hooks apply who may see and do what, sending each decision to the named person.'},
     {s:'happy-mart-customer-desk', c:'https://lyven81.github.io/ai-projects/images/happy-mart-customer-desk/cover.jpeg', tag:'Triage and Routing', t:'Happy Mart Customer Desk', d:'A customer service desk for an online electronics store where a router sends each question to the department team that owns it, and code checks every reply before the customer sees it.'},
@@ -111,7 +112,6 @@ const AIS=[
     {s:'pak-razif-the-gardener', c:'https://lyven81.github.io/ai-projects/images/pak-razif-the-gardener/cover.jpeg', tag:'Customer Service', t:'Pak Razif The Gardener', d:"A gardener's own assistant that answers enquiries and books free site visits while he works, with prices and decisions kept for him."},
     {s:'badminton-booking-agent', c:'https://lyven81.github.io/ai-projects/images/badminton-booking-agent/cover.jpeg', tag:'Customer Service', t:'Badminton Court Booking Agent', d:"A court booking assistant that answers only from the centre's policies, with staff in control of payments"},
     {s:'wee-auto-car-care', c:'https://lyven81.github.io/ai-projects/images/wee-auto-car-care/cover.jpeg', tag:'Customer Service', t:'Wee Auto Car Care', d:'A customer service assistant for a car workshop, with staff in control'},
-    {s:'hook-or-prompt', c:AI_IMG+'hook-or-prompt/cover.jpeg', tag:'Agentic Commerce', t:'Hook or Prompt', d:'How code guarantees a rule a prompt only guides'},
 ];
 const gcard=(it,base)=>`<a class="gcard" href="${base}${it.s}.html"><img src="${it.c}" alt="" loading="lazy"><span class="rubric">${it.tag}</span><h4>${it.t}</h4><p>${it.d}</p></a>`;
 document.getElementById('csGrid').innerHTML=CASES.map(c=>gcard(c,CS_BLOG)).join('');
